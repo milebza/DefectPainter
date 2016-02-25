@@ -17,7 +17,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        
+
 
 
         Iterator it = mapEditor.getGrid().iterator();

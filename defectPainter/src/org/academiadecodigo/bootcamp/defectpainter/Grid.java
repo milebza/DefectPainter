@@ -31,6 +31,15 @@ public class Grid implements Iterable<Cell> {
 
     }
 
+    public int getWidth() {
+        return cells[0].length;
+    }
+
+    public int getHeight() {
+        return cells.length;
+    }
+
+
     @Override
     public Iterator<Cell> iterator() {
         return new GridIterator();

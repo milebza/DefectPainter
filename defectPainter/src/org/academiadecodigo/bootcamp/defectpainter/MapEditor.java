@@ -40,6 +40,7 @@ public class MapEditor {
             bReader = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
             System.out.println("File not found, using default size");
+            e.printStackTrace();
             tempGrid = new Grid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
             return tempGrid;
         }

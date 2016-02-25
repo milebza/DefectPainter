@@ -19,13 +19,19 @@ public class Main {
 
 
 
+
         Iterator it = mapEditor.getGrid().iterator();
 
         while (it.hasNext()) {
             System.out.println(it.next());
         }
+<<<<<<< HEAD
+
+       /* mapEditor.getGrid().set(0, 0, 'F');
+=======
 /*
         mapEditor.getGrid().set(0, 0, 'F');
+>>>>>>> a2833a1100c97b8d52416caee3fabc6adf80d2ac
         mapEditor.getGrid().set(4, 3, 'F');
 
         try {

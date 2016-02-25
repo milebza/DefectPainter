@@ -1,6 +1,7 @@
-package org.academiadecodigo.bootcamp.defectpainter;
+package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.CellGfx;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -45,8 +46,10 @@ public class Cell {
         this.state = state;
 
         if (state == ' ') {
+            this.representation.setColor(Color.WHITE);
             this.representation.draw();
         } else {
+            this.representation.setColor(Color.BLACK);
             this.representation.fill();
         }
     }

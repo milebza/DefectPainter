@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 /**
- * Created by milena on 25/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class PainterGfx extends MovableRepresentation {
 

@@ -1,10 +1,10 @@
 package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
-import org.academiadecodigo.bootcamp.defectpainter.Movable;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Movable;
 
 /**
- * Created by milena on 25/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class MovableRepresentation extends Representation implements Movable {
 

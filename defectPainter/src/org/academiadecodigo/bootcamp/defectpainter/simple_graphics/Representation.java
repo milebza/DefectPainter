@@ -1,14 +1,14 @@
 package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
-import org.academiadecodigo.bootcamp.defectpainter.Representable;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Colorable;
 import org.academiadecodigo.simplegraphics.graphics.Fillable;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
 
 /**
- * Created by milena on 25/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public abstract class Representation implements Representable {
 

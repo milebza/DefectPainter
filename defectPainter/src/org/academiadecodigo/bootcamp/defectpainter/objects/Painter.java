@@ -1,8 +1,8 @@
-package org.academiadecodigo.bootcamp.defectpainter;
+package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.MovableRepresentation;
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
-import org.academiadecodigo.simplegraphics.graphics.Color;
+
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.

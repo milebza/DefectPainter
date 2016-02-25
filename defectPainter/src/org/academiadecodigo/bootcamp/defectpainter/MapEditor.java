@@ -1,5 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
+import org.academiadecodigo.bootcamp.defectpainter.objects.Grid;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Painter;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Controller;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Streamer;
@@ -16,12 +18,14 @@ import java.io.*;
  */
 public class MapEditor {
 
-    public static final int DEFAULT_GRID_SIZE = 100;
+    public static final int DEFAULT_GRID_SIZE = 10;
     private static final int TOP_CORRECTION = 23;
     private Grid grid;
     private Painter painter;
     private boolean spaceHold;
     private Controller controller;
+
+    private boolean notOver = true;
 
 
     public MapEditor() {
@@ -44,12 +48,21 @@ public class MapEditor {
 
     public void start() throws InterruptedException {
 
-        while (true) {
+        while (notOver) {
 
             Thread.sleep(50);
 
             pollKeyboardEvents();
             pollMouseEvents();
+        }
+
+        System.exit(0);
+    }
+
+
+    public void continuousPainting() {
+        if (spaceHold) {
+            this.grid.changeState(painter.getCol(), painter.getRow());
         }
     }
 
@@ -65,49 +78,47 @@ public class MapEditor {
         if (event.getKeyboardEventType() == KeyboardEventType.KEY_PRESSED) {
             switch (event.getKey()) {
                 case KeyboardEvent.KEY_UP:
-                    if (spaceHold) {
-                        this.grid.changeState(painter.getCol(), painter.getRow());
-                    }
                     painter.moveUp();
+                    continuousPainting();
                     break;
                 case KeyboardEvent.KEY_DOWN:
-                    if (spaceHold) {
-                        this.grid.changeState(painter.getCol(), painter.getRow());
-                    }
                     painter.moveDown();
+                    continuousPainting();
                     break;
                 case KeyboardEvent.KEY_LEFT:
-                    if (spaceHold) {
-                        this.grid.changeState(painter.getCol(), painter.getRow());
-                    }
                     painter.moveLeft();
+                    continuousPainting();
                     break;
                 case KeyboardEvent.KEY_RIGHT:
-                    if (spaceHold) {
-                        this.grid.changeState(painter.getCol(), painter.getRow());
-                    }
                     painter.moveRight();
+                    continuousPainting();
                     break;
                 case KeyboardEvent.KEY_L:
                     try {
                         Streamer.load("resources/test.txt", grid);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
+                    } catch (IOException e) {
+                        e.getMessage();
                     }
                     break;
                 case KeyboardEvent.KEY_S:
                     try {
                         Streamer.save("resources/test.txt", this.grid);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
+                    } catch (IOException e) {
+                        e.getMessage();
                     }
                     break;
                 case KeyboardEvent.KEY_SPACE:
-                    spaceHold = true;
                     this.grid.changeState(painter.getCol(), painter.getRow());
+                    spaceHold = true;
                     break;
                 case KeyboardEvent.KEY_C:
                     painter.setOn(!painter.isOn());
+                    break;
+                case KeyboardEvent.KEY_X:
+                    notOver = false;
+                    break;
+                case KeyboardEvent.KEY_R:
+                    grid.reset();
                     break;
             }
         } else { //KEY.RELEASE

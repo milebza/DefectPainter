@@ -1,9 +1,9 @@
-package org.academiadecodigo.bootcamp.defectpainter;
+package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 /**
- * Created by milena on 25/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public interface Representable {
 

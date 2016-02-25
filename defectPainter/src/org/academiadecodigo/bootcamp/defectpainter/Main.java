@@ -1,9 +1,5 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-
-import java.io.IOException;
-import java.util.Iterator;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -12,8 +8,6 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         MapEditor mapEditor = null;
-
-
         mapEditor = new MapEditor();
 
 
@@ -21,7 +15,7 @@ public class Main {
 
         //TODO: THE CONCEPT! PAINT program!
 
-        //TODO: RESET KEY_R Button
+        // RESET KEY_R Button
         //TODO: MENU
         //TODO: COLOR PALETTE
         //TODO: PAINT DIFFERENT COLORS
@@ -36,6 +30,9 @@ public class Main {
         //TODO: DRAW RECTANGLE FILL AND STROKED
         //TODO: DRAW CIRCLE FILL AND STROKED
 
+        // solved the draw/fill border
+        // the error with continuous painting solved
+        // added the exit functionality
 
 
         /*Iterator it = mapEditor.getGrid().iterator();

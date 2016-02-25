@@ -1,4 +1,5 @@
-package org.academiadecodigo.bootcamp.defectpainter;
+package org.academiadecodigo.bootcamp.defectpainter.objects;
+
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -37,6 +38,16 @@ public class Grid implements Iterable<Cell> {
             set(col, row, '*');
         } else {
             set(col, row, ' ');
+        }
+    }
+
+    public void reset() {
+
+        Iterator<Cell> it = iterator();
+
+        while (it.hasNext()) {
+            it.next().setState(' ');
+
         }
     }
 

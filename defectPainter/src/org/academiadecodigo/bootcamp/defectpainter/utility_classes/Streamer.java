@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.utility_classes;
 
-import org.academiadecodigo.bootcamp.defectpainter.Cell;
-import org.academiadecodigo.bootcamp.defectpainter.Grid;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Cell;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Grid;
 import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
 
 import java.io.*;

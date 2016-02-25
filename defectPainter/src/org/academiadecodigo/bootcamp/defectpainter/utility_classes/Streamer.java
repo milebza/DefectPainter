@@ -12,9 +12,9 @@ import java.util.Iterator;
  */
 public class Streamer {
 
-    public static Grid load(String file) throws IOException {
+    public static Grid load(String file, Grid tempGrid) throws IOException {
 
-        Grid tempGrid;
+        //Grid tempGrid;
 
         BufferedReader bReader = null;
         try {
@@ -41,7 +41,9 @@ public class Streamer {
 
         char[] chars = result.toCharArray();
 
-        tempGrid = new Grid(width, height);
+        if (tempGrid == null) {
+            tempGrid = new Grid(width, height);
+        }
 
         Iterator<Cell> it = tempGrid.iterator();
         int i = 0;

@@ -31,6 +31,15 @@ public class Grid implements Iterable<Cell> {
 
     }
 
+    public void changeState(int col, int row) {
+
+        if (get(col, row) == ' ') {
+            set(col, row, '*');
+        } else {
+            set(col, row, ' ');
+        }
+    }
+
     public int getWidth() {
         return cells[0].length;
     }

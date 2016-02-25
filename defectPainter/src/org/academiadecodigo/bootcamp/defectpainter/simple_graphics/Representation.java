@@ -37,6 +37,9 @@ public abstract class Representation implements Representable {
         }
     }
 
+    public void draw() {
+        shape.draw();
+    }
 
     @Override
     public int getCol() {

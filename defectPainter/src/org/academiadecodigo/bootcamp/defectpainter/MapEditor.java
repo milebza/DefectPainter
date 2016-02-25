@@ -39,7 +39,7 @@ public class MapEditor implements KeyboardHandler {
 
     public MapEditor(String file) throws IOException {
         this.file = file;
-        this.grid = Streamer.load(file);
+        this.grid = Streamer.load(file, grid);
         this.painter = new Painter(grid.getWidth(), grid.getHeight());
         configKeys();
     }
@@ -48,6 +48,15 @@ public class MapEditor implements KeyboardHandler {
         return grid;
     }
 
+    public void start() throws InterruptedException {
+
+        while (true) {
+
+            Thread.sleep(50);
+
+            pollEvents();
+        }
+    }
 
     private void configKeys() {
 
@@ -100,7 +109,13 @@ public class MapEditor implements KeyboardHandler {
     }
 
     public void pollEvents() {
+
         KeyboardEvent event = queue.poll();
+
+        if (event == null) {
+            return;
+        }
+
         if (event.getKeyboardEventType() == KeyboardEventType.KEY_PRESSED) {
             switch (event.getKey()) {
                 case KeyboardEvent.KEY_UP:
@@ -117,7 +132,7 @@ public class MapEditor implements KeyboardHandler {
                     break;
                 case KeyboardEvent.KEY_L:
                     try {
-                        Streamer.load("resources/test.txt");
+                        Streamer.load("resources/test.txt", grid);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -131,7 +146,8 @@ public class MapEditor implements KeyboardHandler {
                     break;
                 case KeyboardEvent.KEY_SPACE:
                     spaceHold = true;
-                    //TODO: fill the cell
+                    System.out.println("k_s");
+                    this.grid.changeState(painter.getCol(), painter.getRow());
                     break;
             }
         } else {
@@ -146,7 +162,7 @@ public class MapEditor implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent e) {
 
-        queue.offer(e);
+        //queue.offer(e);
 
     }
 

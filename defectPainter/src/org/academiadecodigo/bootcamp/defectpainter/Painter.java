@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp.defectpainter;
 
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.MovableRepresentation;
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -13,6 +14,7 @@ public class Painter {
     private int gridWidth;
     private int gridHeight;
     private MovableRepresentation painter;
+    private boolean on;
 
     public Painter(int gridWidth, int gridHeight) {
         this.gridWidth = gridWidth;
@@ -36,6 +38,20 @@ public class Painter {
 
     public void setRow(int row) {
         this.row = row;
+    }
+
+    public boolean isOn() {
+        return on;
+    }
+
+    public void setOn(boolean on) {
+
+        this.on = on;
+        if (on) {
+            painter.fill();
+        } else {
+            painter.delete();
+        }
     }
 
     public void moveUp() {

@@ -14,6 +14,7 @@ public class PainterGfx extends MovableRepresentation {
                 Converter.COL_WIDTH, Converter.ROW_HEIGHT));
         super.setColor(Color.BLUE);
         super.fill();
+
     }
 
 

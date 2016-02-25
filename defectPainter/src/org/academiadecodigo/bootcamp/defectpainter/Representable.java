@@ -16,4 +16,6 @@ public interface Representable {
     void fill();
 
     void draw();
+
+    void delete();
 }

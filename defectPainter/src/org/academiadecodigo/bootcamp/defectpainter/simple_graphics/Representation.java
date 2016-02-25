@@ -37,6 +37,11 @@ public abstract class Representation implements Representable {
         }
     }
 
+    @Override
+    public void delete() {
+        shape.delete();
+    }
+
     public void draw() {
         shape.draw();
     }

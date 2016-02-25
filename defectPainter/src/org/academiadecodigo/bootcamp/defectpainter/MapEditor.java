@@ -1,9 +1,12 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Controller;
+import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Streamer;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
+import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 
 
 import java.io.*;
@@ -14,6 +17,7 @@ import java.io.*;
 public class MapEditor {
 
     public static final int DEFAULT_GRID_SIZE = 10;
+    private static final int TOP_CORRECTION = 23;
     private Grid grid;
     private Painter painter;
     private boolean spaceHold;
@@ -44,15 +48,15 @@ public class MapEditor {
 
             Thread.sleep(50);
 
-            pollEvents();
+            pollKeyboardEvents();
+            pollMouseEvents();
         }
     }
 
 
+    public void pollKeyboardEvents() {
 
-    public void pollEvents() {
-
-        KeyboardEvent event = controller.getQueue().poll();
+        KeyboardEvent event = controller.getQueueKeyboard().poll();
 
         if (event == null) {
             return;
@@ -100,16 +104,43 @@ public class MapEditor {
                     break;
                 case KeyboardEvent.KEY_SPACE:
                     spaceHold = true;
-                    System.out.println("k_s");
                     this.grid.changeState(painter.getCol(), painter.getRow());
                     break;
+                case KeyboardEvent.KEY_C:
+                    painter.setOn(!painter.isOn());
+                    break;
             }
-        } else {
+        } else { //KEY.RELEASE
             switch (event.getKey()) {
                 case KeyboardEvent.KEY_SPACE:
                     spaceHold = false;
                     break;
             }
         }
+    }
+
+    public void pollMouseEvents() {
+        MouseEvent event = controller.getQueueMouse().poll();
+
+        if (event == null) {
+            return;
+        }
+
+        int tempCol = Converter.xToCol((int) (event.getX() - Converter.LEFT_MARGIN));
+        int tempRow = Converter.yToRow((int) (event.getY() - TOP_CORRECTION - Converter.TOP_MARGIN));
+        if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 || event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
+            return;
+        }
+
+
+        if (event.getEventType() == MouseEventType.MOUSE_CLICKED) {
+
+            this.grid.changeState(tempCol, tempRow);
+        } /*else { //MOUSE_MOVE
+            if (spaceHold) {
+                this.grid.changeState(Converter.xToCol((int) event.getX()), Converter.yToRow((int) event.getY() - TOP_CORRECTION));
+            }
+        }*/
+
     }
 }

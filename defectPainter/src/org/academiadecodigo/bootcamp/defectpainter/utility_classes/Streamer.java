@@ -14,8 +14,6 @@ public class Streamer {
 
     public static Grid load(String file, Grid tempGrid) throws IOException {
 
-        //Grid tempGrid;
-
         BufferedReader bReader = null;
         try {
             bReader = new BufferedReader(new FileReader(file));

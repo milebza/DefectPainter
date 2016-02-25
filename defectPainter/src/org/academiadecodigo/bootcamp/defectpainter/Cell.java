@@ -41,12 +41,10 @@ public class Cell {
     }
 
     public void setState(char state) {
+
         this.state = state;
 
-        System.out.println("char: " + state);
-
         if (state == ' ') {
-            System.out.println("fill");
             this.representation.draw();
         } else {
             this.representation.fill();

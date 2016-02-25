@@ -13,11 +13,9 @@ public class Main {
 
         MapEditor mapEditor = null;
 
-        try {
-            mapEditor = new MapEditor("resources/testeF.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        mapEditor = new MapEditor();
+
 
         mapEditor.start();
 

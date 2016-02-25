@@ -1,5 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
+import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
+
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
@@ -7,12 +9,16 @@ public class Painter {
 
     private int col;
     private int row;
-    private int width;
-    private int height;
+    private int gridWidth;
+    private int gridHeight;
+    private PainterGfx painter;
 
-    public Painter(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Painter(int gridWidth, int gridHeight) {
+        this.gridWidth = gridWidth;
+        this.gridHeight = gridHeight;
+        this.col = 0;
+        this.row = 0;
+        this.painter = new PainterGfx(col, row);
     }
 
     public int getCol() {
@@ -34,24 +40,28 @@ public class Painter {
     public void moveUp() {
         if (row != 0) {
             row--;
+            painter.move(0, -1);
         }
     }
 
     public void moveDown() {
-        if (row != height) {
+        if (row != gridHeight - 1) {
             row++;
+            painter.move(0, 1);
         }
     }
 
     public void moveRight() {
-        if (col != width) {
+        if (col != gridWidth - 1) {
             col++;
+            painter.move(1, 0);
         }
     }
 
     public void moveLeft() {
         if (col != 0) {
             col--;
+            painter.move(-1, 0);
         }
     }
 

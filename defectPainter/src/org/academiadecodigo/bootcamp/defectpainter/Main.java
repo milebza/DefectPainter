@@ -1,5 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -33,5 +35,9 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+
+
+        //Rectangle rec = new Rectangle()
+
     }
 }

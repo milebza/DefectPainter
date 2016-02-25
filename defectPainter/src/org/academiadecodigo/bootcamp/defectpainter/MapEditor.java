@@ -1,9 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
 
 /**
@@ -73,10 +70,38 @@ public class MapEditor {
         }
         return tempGrid;
 
-    }
-
-    public void save(String file) {
 
     }
+
+    public void save(String file) throws IOException {
+
+
+        Iterator<Cell> it = grid.iterator();
+        int i = 0;
+        //(w*h)+number os lines, to count with the \n chars
+        char[] chars = new char[(grid.getWidth() * grid.getHeight()) + grid.getHeight()];
+
+        while (it.hasNext()) {
+            Cell actualCell = it.next();
+            chars[i++] = actualCell.getState();
+            if (actualCell.getCol() == grid.getWidth() - 1) {
+                chars[i++] = '\n';
+            }
+        }
+        BufferedWriter bWriter = null;
+
+        try {
+            bWriter = new BufferedWriter(new FileWriter(file));
+            bWriter.write(chars);
+            //TODO: está a usar alguma coisa do buffer?
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            bWriter.close();
+
+        }
+
+    }
+
 
 }

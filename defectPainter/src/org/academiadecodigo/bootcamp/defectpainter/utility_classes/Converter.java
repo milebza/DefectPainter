@@ -1,7 +1,7 @@
-package org.academiadecodigo.bootcamp.defectpainter;
+package org.academiadecodigo.bootcamp.defectpainter.utility_classes;
 
 /**
- * Created by milena on 25/02/16.
+ * Created by milena, filipe, joana, ita on 25/02/16.
  */
 public class Converter {
 

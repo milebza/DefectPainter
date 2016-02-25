@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
+import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Streamer;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -15,7 +16,7 @@ import java.util.Queue;
  */
 public class MapEditor implements KeyboardHandler {
 
-    private final int DEFAULT_GRID_SIZE = 10;
+    public static final int DEFAULT_GRID_SIZE = 10;
     private Grid grid;
     private Painter painter;
     private String file;
@@ -38,7 +39,7 @@ public class MapEditor implements KeyboardHandler {
 
     public MapEditor(String file) throws IOException {
         this.file = file;
-        this.grid = load(file);
+        this.grid = Streamer.load(file);
         this.painter = new Painter(grid.getWidth(), grid.getHeight());
         configKeys();
     }
@@ -47,78 +48,6 @@ public class MapEditor implements KeyboardHandler {
         return grid;
     }
 
-    public Grid load(String file) throws IOException {
-
-        Grid tempGrid;
-
-        BufferedReader bReader = null;
-        try {
-            bReader = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found, using default size");
-            e.printStackTrace();
-            tempGrid = new Grid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
-            return tempGrid;
-        }
-
-        String line = "";
-        String result = "";
-
-        int width = 0;
-        int height = 0;
-
-        while ((line = bReader.readLine()) != null) {
-            width = line.length();
-            height++;
-            result += line;
-        }
-        bReader.close();
-
-        char[] chars = result.toCharArray();
-
-        tempGrid = new Grid(width, height);
-
-        Iterator<Cell> it = tempGrid.iterator();
-        int i = 0;
-        while (it.hasNext()) {
-
-            it.next().setState(chars[i++]);
-
-        }
-        return tempGrid;
-
-
-    }
-
-    public void save(String file) throws IOException {
-
-
-        Iterator<Cell> it = grid.iterator();
-        int i = 0;
-        //(w*h)+number os lines, to count with the \n chars
-        char[] chars = new char[(grid.getWidth() * grid.getHeight()) + grid.getHeight()];
-
-        while (it.hasNext()) {
-            Cell actualCell = it.next();
-            chars[i++] = actualCell.getState();
-            if (actualCell.getCol() == grid.getWidth() - 1) {
-                chars[i++] = '\n';
-            }
-        }
-        BufferedWriter bWriter = null;
-
-        try {
-            bWriter = new BufferedWriter(new FileWriter(file));
-            bWriter.write(chars);
-            //TODO: está a usar alguma coisa do buffer?
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            bWriter.close();
-
-        }
-
-    }
 
     private void configKeys() {
 
@@ -188,14 +117,14 @@ public class MapEditor implements KeyboardHandler {
                     break;
                 case KeyboardEvent.KEY_L:
                     try {
-                        load("resources/test.txt");
+                        Streamer.load("resources/test.txt");
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
                     break;
                 case KeyboardEvent.KEY_S:
                     try {
-                        save("resources/test.txt");
+                        Streamer.save("resources/test.txt", this.grid);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }

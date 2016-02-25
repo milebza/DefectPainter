@@ -1,6 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 
-import org.academiadecodigo.bootcamp.defectpainter.Converter;
+import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.bootcamp.defectpainter.Movable;
 
 /**

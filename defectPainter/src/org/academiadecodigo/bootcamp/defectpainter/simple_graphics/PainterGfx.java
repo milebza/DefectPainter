@@ -11,8 +11,7 @@ public class PainterGfx extends MovableRepresentation {
 
     public PainterGfx(int col, int row) {
         super.setShape(new Rectangle(Converter.colToX(col) + Converter.LEFT_MARGIN, Converter.rowToY(row) + Converter.TOP_MARGIN,
-                Converter.COL_WIDTH, Converter.ROW_HEIGHT));
-        super.setColor(Color.BLUE);
+                Converter.COL_WIDTH, Converter.ROW_HEIGHT), Color.PINK);
         super.fill();
 
     }

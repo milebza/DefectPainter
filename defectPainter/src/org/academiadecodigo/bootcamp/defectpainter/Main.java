@@ -19,6 +19,24 @@ public class Main {
 
         mapEditor.start();
 
+        //TODO: THE CONCEPT! PAINT program!
+
+        //TODO: RESET KEY_R Button
+        //TODO: MENU
+        //TODO: COLOR PALETTE
+        //TODO: PAINT DIFFERENT COLORS
+        //TODO: LOAD/SAVE DIFFERENT COLORS, do a ENUM as DICTIONARY
+        //TODO: LOAD/SAVE ASK FILE TO USER
+        //TODO: NEW IMAGE(GRID) WITH NEW SIZE
+        //TODO: SEE IF MOUSE DRAG IS POSSIBLE
+        //TODO: PAINT BUCKET
+        //TODO: PAINT BRUSH
+        //TODO: ERASER
+        //TODO: BRUSH/ERASER SIZE
+        //TODO: DRAW RECTANGLE FILL AND STROKED
+        //TODO: DRAW CIRCLE FILL AND STROKED
+
+
 
         /*Iterator it = mapEditor.getGrid().iterator();
 

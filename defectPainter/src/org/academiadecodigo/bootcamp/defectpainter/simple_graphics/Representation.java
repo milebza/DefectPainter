@@ -16,9 +16,11 @@ public abstract class Representation implements Representable {
     private Shape shape;
 
 
-    public void setShape(Shape shape) {
+    public void setShape(Shape shape, Color color) {
         this.shape = shape;
+        setColor(color);
         shape.draw();
+
     }
 
     public Shape getShape() {
@@ -32,6 +34,7 @@ public abstract class Representation implements Representable {
     }
 
     public void fill() {
+
         if (shape instanceof Fillable) {
             ((Fillable) shape).fill();
         }

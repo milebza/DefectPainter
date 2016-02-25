@@ -10,7 +10,7 @@ import org.academiadecodigo.simplegraphics.graphics.Shape;
 /**
  * Created by milena on 25/02/16.
  */
-public class Representation implements Representable {
+public abstract class Representation implements Representable {
 
 
     private Shape shape;

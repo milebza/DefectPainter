@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
+import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.CellGfx;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -19,6 +19,10 @@ public class Cell {
         this.state = ' ';
         this.representation = new CellGfx(col, row);
 
+    }
+
+    public void delete() {
+        representation.delete();
     }
 
     public int getCol() {
@@ -45,11 +49,13 @@ public class Cell {
 
         this.state = state;
 
+        ColorCorrelation c = ColorCorrelation.converter(state);
+
         if (state == ' ') {
-            this.representation.setColor(Color.WHITE);
+            this.representation.setColor(c.getColor());
             this.representation.draw();
         } else {
-            this.representation.setColor(Color.BLACK);
+            this.representation.setColor(c.getColor());
             this.representation.fill();
         }
     }

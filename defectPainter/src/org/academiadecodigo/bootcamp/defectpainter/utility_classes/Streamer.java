@@ -43,6 +43,13 @@ public class Streamer {
             tempGrid = new Grid(width, height);
         }
 
+        // added to make possible load from a different file size
+        if (tempGrid.getHeight() != height || tempGrid.getWidth() != width) {
+            tempGrid.delete();
+            tempGrid = new Grid(width, height);
+        }
+
+
         Iterator<Cell> it = tempGrid.iterator();
         int i = 0;
         while (it.hasNext()) {

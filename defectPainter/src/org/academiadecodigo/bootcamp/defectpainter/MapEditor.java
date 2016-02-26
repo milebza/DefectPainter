@@ -37,7 +37,7 @@ public class MapEditor {
         this.grid = new Grid(factory, DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
         this.painter = new Painter(grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
-        this.menuPanel = new MenuPanel(factory, grid.getWidth() + Converter.COL_WIDTH);
+        this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
 
     }
 
@@ -150,8 +150,15 @@ public class MapEditor {
 
         int tempCol = Converter.xToCol((int) (event.getX() - Converter.LEFT_MARGIN));
         int tempRow = Converter.yToRow((int) (event.getY() - TOP_CORRECTION - Converter.TOP_MARGIN));
+
         if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 || event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
-            System.out.println("Test");
+
+            if (tempCol > grid.getWidth() && tempCol < menuPanel.getWidth() && tempRow < menuPanel.getHeight()) {
+
+                this.menuPanel.checkWhatToDo(this.grid, tempCol, tempRow);
+
+            }
+
             return;
         }
 

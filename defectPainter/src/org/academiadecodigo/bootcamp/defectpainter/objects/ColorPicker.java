@@ -12,6 +12,9 @@ public class ColorPicker {
     //private int row;
     private Cell[][] colorPalette;
 
+    public Cell[][] getColorPalette() {
+        return colorPalette;
+    }
 
     public ColorPicker(RepresentationFactory factory, int colOffset) {
         this.col = colOffset;
@@ -44,9 +47,6 @@ public class ColorPicker {
 
                 colorPalette[i][j].setState(ColorCorrelation.values()[colorIndex].getState());
 
-                // check if color is white
-                System.out.println("init with color " + ColorCorrelation.values()[colorIndex]);
-
                 colorIndex++;
 
             }
@@ -57,6 +57,15 @@ public class ColorPicker {
 
     public char getColor(int col, int row) {
         return colorPalette[row][col].getState();
+    }
+
+
+    public int getWidth() {
+        return colorPalette[0].length + col;
+    }
+
+    public int getHeight() {
+        return colorPalette.length;
     }
 
 }

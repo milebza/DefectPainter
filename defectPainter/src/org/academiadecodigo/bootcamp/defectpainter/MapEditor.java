@@ -155,7 +155,7 @@ public class MapEditor {
 
             if (tempCol > grid.getWidth() && tempCol < menuPanel.getWidth() && tempRow < menuPanel.getHeight()) {
 
-                this.menuPanel.checkWhatToDo(this.grid, tempCol, tempRow);
+                this.menuPanel.checkAction(this.grid, tempCol, tempRow);
 
             }
 

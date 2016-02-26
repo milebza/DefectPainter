@@ -16,13 +16,11 @@ public class MenuPanel {
         this.colorPicker = new ColorPicker(factory, colOffset);
     }
 
-    public void checkWhatToDo(Grid grid, int col, int row) {
+    public void checkAction(Grid grid, int col, int row) {
 
         if (col < colorPicker.getWidth() && row < colorPicker.getHeight()) {
 
-            System.out.println("Checking what to do ");
-
-            System.out.println("col: " + (col - grid.getWidth()) + " row: " + row);
+            System.out.println("Color changed to: " + ColorCorrelation.converter(colorPicker.getColor(col - grid.getWidth() - 1, row)));
 
             grid.setColorCorrelation(ColorCorrelation.converter(colorPicker.getColor(col - grid.getWidth() - 1, row)));
         }
@@ -36,10 +34,5 @@ public class MenuPanel {
     public int getHeight() {
         return colorPicker.getHeight();
     }
-
-    //Legend
-
-    //Color picker
-
 
 }

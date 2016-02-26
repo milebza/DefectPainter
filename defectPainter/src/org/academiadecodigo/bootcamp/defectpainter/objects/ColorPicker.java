@@ -40,7 +40,7 @@ public class ColorPicker {
 
             for (int j = 0; j < colorPalette[i].length; j++) {
 
-                representation = factory.getCell(col + j, i, CellType.RECTANGULAR);
+                representation = factory.getCell(col + j, i, CellType.ROUND);
                 representation.setColor((ColorCorrelation.values()[colorIndex].getColor()));
 
                 colorPalette[i][j] = new Cell(col + j, i, representation);

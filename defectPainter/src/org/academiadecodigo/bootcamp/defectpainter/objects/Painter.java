@@ -33,10 +33,12 @@ public class Painter {
     }
 
     public void setCol(int col) {
+        painter.move(col - this.col, 0);
         this.col = col;
     }
 
     public void setRow(int row) {
+        painter.move(0, row - this.row);
         this.row = row;
     }
 

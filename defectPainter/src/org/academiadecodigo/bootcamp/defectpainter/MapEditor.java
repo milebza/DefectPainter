@@ -106,7 +106,7 @@ public class MapEditor {
                 case KeyboardEvent.KEY_L:
                     try {
                         this.grid = Streamer.load(factory, "resources/test.txt", grid);
-                        resetPainter();
+                        resetSections();
                     } catch (IOException e) {
                         e.getMessage();
                     }
@@ -141,9 +141,12 @@ public class MapEditor {
         }
     }
 
-    private void resetPainter() {
+    private void resetSections() {
         painter.delete();
         painter = new Painter(grid.getWidth(), grid.getHeight());
+
+        menuPanel.delete();
+        this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
     }
 
     public void pollMouseEvents() {
@@ -173,6 +176,8 @@ public class MapEditor {
         if (event.getEventType() == MouseEventType.MOUSE_CLICKED) {
 
             this.grid.changeState(tempCol, tempRow);
+            this.painter.setCol(tempCol);
+            this.painter.setRow(tempRow);
         } /*else { //MOUSE_MOVE
             if (spaceHold) {
                 this.grid.changeState(Converter.xToCol((int) event.getX()), Converter.yToRow((int) event.getY() - TOP_CORRECTION));

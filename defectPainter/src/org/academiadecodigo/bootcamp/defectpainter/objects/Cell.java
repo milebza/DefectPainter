@@ -15,7 +15,7 @@ public class Cell {
     public Cell(int col, int row, Representable representation) {
         this.col = col;
         this.row = row;
-        this.state = ' ';
+        this.state = ColorCorrelation.WHITE.getState();
         this.representation = representation;
     }
 
@@ -49,7 +49,7 @@ public class Cell {
 
         ColorCorrelation c = ColorCorrelation.converter(state);
 
-        if (state == ' ') {
+        if (state == ColorCorrelation.WHITE.getState()) {
             this.representation.setColor(c.getColor());
             this.representation.draw();
         } else {

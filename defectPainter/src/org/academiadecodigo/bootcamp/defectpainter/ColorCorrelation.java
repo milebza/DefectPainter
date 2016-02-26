@@ -28,7 +28,7 @@ public enum ColorCorrelation {
     PEACH('l', Color.PEACH),
     TURQUOISE('t', Color.TURQUOISE),
     TOMATO('T', Color.TOMATO),
-    WHITE(' ', Color.WHITE);
+    WHITE('-', Color.WHITE);
 
 
     private char state;
@@ -112,7 +112,7 @@ public enum ColorCorrelation {
             case 'T':
                 colorCorrelation = ColorCorrelation.TOMATO;
                 break;
-            case ' ':
+            case '-':
                 colorCorrelation = ColorCorrelation.WHITE;
                 break;
             default:

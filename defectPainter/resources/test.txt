@@ -1,30 +1,30 @@
                               
-                 B            
-                              
-  y yy                B       
-            r  g  B           
-      o                       
-      o     r                 
-       gggg   g   b           
-    ggggg  g                  
-    g                         
-    g   r        b            
-    g     r  b                
-    g             b           
-  g g       b r               
-    g  r    r                 
-  g gg                        
-    g    r  r                 
- g              r             
- g g                          
- g        r                   
- g            r               
- gggggggggg                   
                               
                               
+                   rrrrr      
+   rrrrr           r   r      
+   r   r           r r r      
+   r r r           r   r      
+   r   r           rrrrr      
+   rrrrr                      
                               
                               
+                      gg  bbbb
+            G           g b  b
+            G          gg b  b
+           G          g   b  b
+          G           ggg bbbb
+          GGGG                
                               
                               
-                              
+   m                 m        
+   mm               m         
+     m             m          
+      m           m           
+       m         m            
+        mmmmmmmmm             
+                     HHHH cccc
+                     H  H c  c
+                     HHHH cccc
+                     H    c  c
                               

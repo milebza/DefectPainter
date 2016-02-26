@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp.defectpainter.utility_classes;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Cell;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Grid;
 import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
+import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 
 import java.io.*;
 import java.util.Iterator;
@@ -12,7 +13,7 @@ import java.util.Iterator;
  */
 public class Streamer {
 
-    public static Grid load(String file, Grid tempGrid) throws IOException {
+    public static Grid load(RepresentationFactory factory, String file, Grid tempGrid) throws IOException {
 
         BufferedReader bReader = null;
         try {
@@ -20,7 +21,7 @@ public class Streamer {
         } catch (FileNotFoundException e) {
             System.out.println("File not found, using default size");
             e.printStackTrace();
-            tempGrid = new Grid(MapEditor.DEFAULT_GRID_SIZE, MapEditor.DEFAULT_GRID_SIZE);
+            tempGrid = new Grid(factory, MapEditor.DEFAULT_GRID_SIZE, MapEditor.DEFAULT_GRID_SIZE);
             return tempGrid;
         }
 
@@ -40,13 +41,13 @@ public class Streamer {
         char[] chars = result.toCharArray();
 
         if (tempGrid == null) {
-            tempGrid = new Grid(width, height);
+            tempGrid = new Grid(factory, width, height);
         }
 
         // added to make possible load from a different file size
         if (tempGrid.getHeight() != height || tempGrid.getWidth() != width) {
             tempGrid.delete();
-            tempGrid = new Grid(width, height);
+            tempGrid = new Grid(factory, width, height);
         }
 
 

@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
-import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.CellGfx;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -13,12 +12,11 @@ public class Cell {
     private char state;
     private Representable representation;
 
-    public Cell(int col, int row) {
+    public Cell(int col, int row, Representable representation) {
         this.col = col;
         this.row = row;
         this.state = ' ';
-        this.representation = new CellGfx(col, row);
-
+        this.representation = representation;
     }
 
     public void delete() {

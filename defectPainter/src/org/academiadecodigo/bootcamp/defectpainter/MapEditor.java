@@ -1,7 +1,9 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
 import org.academiadecodigo.bootcamp.defectpainter.objects.Grid;
+import org.academiadecodigo.bootcamp.defectpainter.objects.MenuPanel;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Painter;
+import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Controller;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Streamer;
@@ -18,30 +20,37 @@ import java.io.*;
  */
 public class MapEditor {
 
-    public static final int DEFAULT_GRID_SIZE = 5;
+    public static final int DEFAULT_GRID_SIZE = 30;
     private static final int TOP_CORRECTION = 23;
+    private RepresentationFactory factory;
     private Grid grid;
     private Painter painter;
-    private boolean spaceHold;
     private Controller controller;
+    private MenuPanel menuPanel;
+    private boolean spaceHold;
 
     private boolean notOver = true;
 
 
-    public MapEditor() {
-        this.grid = new Grid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
+    public MapEditor(RepresentationFactory factory) {
+        this.factory = factory;
+        this.grid = new Grid(factory, DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
+        this.painter = new Painter(grid.getWidth(), grid.getHeight());
+        this.controller = new Controller();
+        this.menuPanel = new MenuPanel(factory, grid.getWidth() + Converter.COL_WIDTH);
+
+    }
+
+    public MapEditor(RepresentationFactory factory, int w, int h) {
+        this.factory = factory;
+        this.grid = new Grid(factory, w, h);
         this.painter = new Painter(grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
     }
 
-    public MapEditor(int w, int h) {
-        this.grid = new Grid(w, h);
-        this.painter = new Painter(grid.getWidth(), grid.getHeight());
-        this.controller = new Controller();
-    }
-
-    public MapEditor(String file) throws IOException {
-        this.grid = Streamer.load(file, grid);
+    public MapEditor(RepresentationFactory factory, String file) throws IOException {
+        this.factory = factory;
+        this.grid = Streamer.load(factory, file, grid);
         this.painter = new Painter(grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
     }
@@ -95,7 +104,7 @@ public class MapEditor {
                     break;
                 case KeyboardEvent.KEY_L:
                     try {
-                        this.grid = Streamer.load("resources/test.txt", grid);
+                        this.grid = Streamer.load(factory, "resources/test.txt", grid);
                         painter.delete();
                         painter = new Painter(grid.getWidth(), grid.getHeight());
                     } catch (IOException e) {
@@ -142,6 +151,7 @@ public class MapEditor {
         int tempCol = Converter.xToCol((int) (event.getX() - Converter.LEFT_MARGIN));
         int tempRow = Converter.yToRow((int) (event.getY() - TOP_CORRECTION - Converter.TOP_MARGIN));
         if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 || event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
+            System.out.println("Test");
             return;
         }
 

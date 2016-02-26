@@ -6,7 +6,7 @@ import org.academiadecodigo.bootcamp.defectpainter.objects.Movable;
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
-public class MovableRepresentation extends Representation implements Movable {
+public class MovableRepresentationGfx extends RepresentationGfx implements Movable {
 
 
     @Override

@@ -1,17 +1,25 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
 
+import org.academiadecodigo.bootcamp.defectpainter.objects.ColorPicker;
+import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
+import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.RepresentationGfxFactory;
+
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        MapEditor mapEditor = null;
-        mapEditor = new MapEditor();
+        RepresentationFactory factory = new RepresentationGfxFactory();
 
+        MapEditor mapEditor = null;
+        mapEditor = new MapEditor(factory);
+
+        //ColorPicker cp = new ColorPicker(factory, 10, 10);
 
         mapEditor.start();
+
 
         //TODO: THE CONCEPT! PAINT program!
 

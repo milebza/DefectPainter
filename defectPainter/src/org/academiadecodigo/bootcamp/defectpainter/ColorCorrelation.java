@@ -14,9 +14,7 @@ public enum ColorCorrelation {
     GREEN('g', Color.GREEN),
     YELLOW('y', Color.YELLOW),
     ORANGE('o', Color.ORANGE),
-    PINK('p', Color.PINK),
-    GREY('G', Color.GRAY),
-    WITHE(' ', Color.WHITE);
+    WHITE(' ', Color.WHITE);
 
     private char state;
     private Color color;
@@ -57,17 +55,11 @@ public enum ColorCorrelation {
             case 'o':
                 colorCorrelation = ColorCorrelation.ORANGE;
                 break;
-            case 'p':
-                colorCorrelation = ColorCorrelation.PINK;
-                break;
-            case 'G':
-                colorCorrelation = ColorCorrelation.GREY;
-                break;
             case ' ':
-                colorCorrelation = ColorCorrelation.WITHE;
+                colorCorrelation = ColorCorrelation.WHITE;
                 break;
             default:
-                colorCorrelation = ColorCorrelation.WITHE;
+                colorCorrelation = ColorCorrelation.WHITE;
                 break;
         }
 

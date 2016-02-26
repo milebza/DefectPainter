@@ -16,13 +16,15 @@ public class Grid implements Iterable<Cell> {
     //initialized just to work while set color is not implemented
     ColorCorrelation colorCorrelation = ColorCorrelation.BLACK;
 
-    public Grid(int width, int height) {
+    public Grid(RepresentationFactory factory, int width, int height) {
 
         cells = new Cell[height][width];
+        Representable cellRepresentation = null;
 
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
-                cells[row][col] = new Cell(col, row);
+                cellRepresentation = factory.getCell(col, row, CellType.RECTANGULAR);
+                cells[row][col] = new Cell(col, row, cellRepresentation);
             }
         }
 

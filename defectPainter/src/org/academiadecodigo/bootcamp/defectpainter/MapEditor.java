@@ -19,7 +19,7 @@ import java.io.*;
  */
 public class MapEditor {
 
-    public static final int DEFAULT_GRID_SIZE = 30;
+    public static final int DEFAULT_GRID_SIZE = 50;
     private static final int TOP_CORRECTION = 23;
     private RepresentationFactory factory;
     private Grid grid;
@@ -34,24 +34,25 @@ public class MapEditor {
     public MapEditor(RepresentationFactory factory) {
         this.factory = factory;
         this.grid = new Grid(factory, DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
-        this.painter = new Painter(grid.getWidth(), grid.getHeight());
-        this.controller = new Controller();
-        this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
-
+        initCommon();
     }
 
     public MapEditor(RepresentationFactory factory, int w, int h) {
         this.factory = factory;
         this.grid = new Grid(factory, w, h);
-        this.painter = new Painter(grid.getWidth(), grid.getHeight());
-        this.controller = new Controller();
+        initCommon();
     }
 
     public MapEditor(RepresentationFactory factory, String file) throws IOException {
         this.factory = factory;
         this.grid = Streamer.load(factory, file, grid);
+        initCommon();
+    }
+
+    private void initCommon() {
         this.painter = new Painter(grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
+        this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
     }
 
     public void start() throws InterruptedException {
@@ -104,8 +105,7 @@ public class MapEditor {
                 case KeyboardEvent.KEY_L:
                     try {
                         this.grid = Streamer.load(factory, "resources/test.txt", grid);
-                        painter.delete();
-                        painter = new Painter(grid.getWidth(), grid.getHeight());
+                        resetSections();
                     } catch (IOException e) {
                         e.getMessage();
                     }
@@ -140,6 +140,14 @@ public class MapEditor {
         }
     }
 
+    private void resetSections() {
+        painter.delete();
+        painter = new Painter(grid.getWidth(), grid.getHeight());
+
+        menuPanel.delete();
+        this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
+    }
+
     public void pollMouseEvents() {
         MouseEvent event = controller.getQueueMouse().poll();
 
@@ -150,11 +158,13 @@ public class MapEditor {
         int tempCol = Converter.xToCol((int) (event.getX() - Converter.LEFT_MARGIN));
         int tempRow = Converter.yToRow((int) (event.getY() - TOP_CORRECTION - Converter.TOP_MARGIN));
 
-        if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 || event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
+        if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 ||
+                event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
 
-            if (tempCol > grid.getWidth() && tempCol < menuPanel.getWidth() && tempRow < menuPanel.getHeight()) {
+            if (tempCol > grid.getWidth() && tempCol < menuPanel.getWidth() && tempRow < menuPanel.getHeight() &&
+                    event.getY() > Converter.TOP_MARGIN + TOP_CORRECTION) {
 
-                this.menuPanel.checkWhatToDo(this.grid, tempCol, tempRow);
+                this.menuPanel.checkAction(this.grid, tempCol, tempRow);
 
             }
 
@@ -165,6 +175,8 @@ public class MapEditor {
         if (event.getEventType() == MouseEventType.MOUSE_CLICKED) {
 
             this.grid.changeState(tempCol, tempRow);
+            this.painter.setCol(tempCol);
+            this.painter.setRow(tempRow);
         } /*else { //MOUSE_MOVE
             if (spaceHold) {
                 this.grid.changeState(Converter.xToCol((int) event.getX()), Converter.yToRow((int) event.getY() - TOP_CORRECTION));

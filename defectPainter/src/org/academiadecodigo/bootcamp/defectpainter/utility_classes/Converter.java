@@ -8,8 +8,8 @@ public class Converter {
     public static final int TOP_MARGIN = 10;
     public static final int LEFT_MARGIN = 10;
 
-    public static final int COL_WIDTH = 20;
-    public static final int ROW_HEIGHT = 20;
+    public static final int COL_WIDTH = 10;
+    public static final int ROW_HEIGHT = 10;
 
     public static int colToX(int col) {
         return col * COL_WIDTH;

@@ -46,10 +46,10 @@ public class Grid implements Iterable<Cell> {
 
     public void changeState(int col, int row) {
 
-        if (get(col, row) == ' ') {
+        if (get(col, row) == ColorCorrelation.WHITE.getState()) {
             set(col, row, colorCorrelation.getState());
         } else {
-            set(col, row, ' ');
+            set(col, row, ColorCorrelation.WHITE.getState());
         }
     }
 
@@ -58,7 +58,7 @@ public class Grid implements Iterable<Cell> {
         Iterator<Cell> it = iterator();
 
         while (it.hasNext()) {
-            it.next().setState(' ');
+            it.next().setState(ColorCorrelation.WHITE.getState());
 
         }
     }

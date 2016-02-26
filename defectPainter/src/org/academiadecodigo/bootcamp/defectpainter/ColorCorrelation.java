@@ -8,22 +8,6 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
  */
 public enum ColorCorrelation {
 
- /*   public static final Color RED = new Color(255, 0, 0);
-    public static final Color GREEN = new Color(0, 255, 0);
-    public static final Color BLUE = new Color(0, 0, 255);
-    public static final Color WHITE = new Color(255, 255, 255);
-    public static final Color LIGHT_GRAY = new Color(192, 192, 192);
-    public static final Color GRAY = new Color(128, 128, 128);
-    public static final Color DARK_GRAY = new Color(64, 64, 64);
-    public static final Color BLACK = new Color(0, 0, 0);
-    public static final Color CYAN = new Color(0, 255, 255);
-    public static final Color MAGENTA = new Color(255, 0, 255);
-    public static final Color YELLOW = new Color(255, 255, 0);
-    public static final Color PINK = new Color(255, 175, 175);
-    public static final Color ORANGE = new Color(255, 200, 0);*/
-
-
-
     BLUE('b', Color.BLUE),
     BLACK('B', Color.BLACK),
     RED('r', Color.RED),
@@ -36,7 +20,16 @@ public enum ColorCorrelation {
     CYAN('c', Color.CYAN),
     MAGENTA('m', Color.MAGENTA),
     PINK('p', Color.PINK),
-    WHITE(' ', Color.WHITE);
+    BROWN('R', Color.BROWN),
+    DARK_GREEN('d', Color.DARK_GREEN),
+    AQUAMARINE('a', Color.AQUAMARINE),
+    VIOLET('v', Color.VIOLET),
+    PURPLE('P', Color.PURPLE),
+    PEACH('l', Color.PEACH),
+    TURQUOISE('t', Color.TURQUOISE),
+    TOMATO('T', Color.TOMATO),
+    WHITE('-', Color.WHITE);
+
 
     private char state;
     private Color color;
@@ -95,7 +88,31 @@ public enum ColorCorrelation {
             case 'p':
                 colorCorrelation = ColorCorrelation.PINK;
                 break;
-            case ' ':
+            case 'R':
+                colorCorrelation = ColorCorrelation.BROWN;
+                break;
+            case 'd':
+                colorCorrelation = ColorCorrelation.DARK_GREEN;
+                break;
+            case 'a':
+                colorCorrelation = ColorCorrelation.AQUAMARINE;
+                break;
+            case 'v':
+                colorCorrelation = ColorCorrelation.VIOLET;
+                break;
+            case 'P':
+                colorCorrelation = ColorCorrelation.PURPLE;
+                break;
+            case 'l':
+                colorCorrelation = ColorCorrelation.PEACH;
+                break;
+            case 't':
+                colorCorrelation = ColorCorrelation.TURQUOISE;
+                break;
+            case 'T':
+                colorCorrelation = ColorCorrelation.TOMATO;
+                break;
+            case '-':
                 colorCorrelation = ColorCorrelation.WHITE;
                 break;
             default:

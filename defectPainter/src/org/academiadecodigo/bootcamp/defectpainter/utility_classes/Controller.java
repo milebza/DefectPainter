@@ -4,10 +4,7 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.mouse.Mouse;
-import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
-import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
-import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
+import org.academiadecodigo.bootcamp.defectpainter.mouse.*;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -41,6 +38,7 @@ public class Controller implements KeyboardHandler, MouseHandler {
 
     public void configMouse() {
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
+        mouse.addEventListener(MouseEventType.MOUSE_DRAGGED);
     }
     public void configKeys() {
 
@@ -120,5 +118,10 @@ public class Controller implements KeyboardHandler, MouseHandler {
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        System.out.println("-----------------DRAGED");
     }
 }

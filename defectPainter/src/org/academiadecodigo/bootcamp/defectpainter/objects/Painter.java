@@ -44,6 +44,10 @@ public class Painter {
         return on;
     }
 
+    public void delete() {
+        painter.delete();
+    }
+
     public void setOn(boolean on) {
 
         this.on = on;

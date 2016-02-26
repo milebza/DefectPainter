@@ -18,7 +18,7 @@ import java.io.*;
  */
 public class MapEditor {
 
-    public static final int DEFAULT_GRID_SIZE = 10;
+    public static final int DEFAULT_GRID_SIZE = 5;
     private static final int TOP_CORRECTION = 23;
     private Grid grid;
     private Painter painter;
@@ -95,7 +95,9 @@ public class MapEditor {
                     break;
                 case KeyboardEvent.KEY_L:
                     try {
-                        Streamer.load("resources/test.txt", grid);
+                        this.grid = Streamer.load("resources/test.txt", grid);
+                        painter.delete();
+                        painter = new Painter(grid.getWidth(), grid.getHeight());
                     } catch (IOException e) {
                         e.getMessage();
                     }

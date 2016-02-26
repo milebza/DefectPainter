@@ -41,7 +41,9 @@ public class Controller implements KeyboardHandler, MouseHandler {
 
     public void configMouse() {
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
+        mouse.addEventListener(MouseEventType.MOUSE_MOVED);
     }
+
     public void configKeys() {
 
 

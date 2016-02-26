@@ -184,5 +184,7 @@ public class MapEditor {
             }
         }*/
 
+        if (event.getEventType())
+
     }
 }

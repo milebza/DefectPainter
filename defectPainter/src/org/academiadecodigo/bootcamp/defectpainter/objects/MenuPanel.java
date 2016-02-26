@@ -58,6 +58,14 @@ public class MenuPanel {
 
     }
 
+    public void delete() {
+        colorPicker.delete();
+
+        for (int i = 0; i < selectedColor.length; i++) {
+            selectedColor[i].delete();
+        }
+    }
+
     public int getWidth() {
         return colorPicker.getWidth();
     }

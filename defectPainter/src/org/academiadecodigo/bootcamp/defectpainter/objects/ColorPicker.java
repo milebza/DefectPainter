@@ -55,10 +55,19 @@ public class ColorPicker {
 
     }
 
+    public void delete() {
+        for (int i = 0; i < colorPalette.length; i++) {
+
+            for (int j = 0; j < colorPalette[i].length; j++) {
+                colorPalette[i][j].delete();
+            }
+
+        }
+    }
+
     public char getColor(int col, int row) {
         return colorPalette[row][col].getState();
     }
-
 
     public int getWidth() {
         return colorPalette[0].length + col;

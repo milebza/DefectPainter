@@ -153,7 +153,7 @@ public class MapEditor {
 
         if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 || event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
 
-            if (tempCol > grid.getWidth() && tempCol < menuPanel.getWidth() && tempRow < menuPanel.getHeight()) {
+            if (tempCol > grid.getWidth() && tempCol < menuPanel.getWidth() && tempRow < menuPanel.getHeight() && event.getY() > Converter.TOP_MARGIN + TOP_CORRECTION) {
 
                 this.menuPanel.checkAction(this.grid, tempCol, tempRow);
 

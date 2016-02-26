@@ -9,10 +9,12 @@ import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
 public class MenuPanel {
     //TODO: Colors to add, 6 colors: white, black, red, green, blue, yellow.
 
+    //private Cell selectedColor;
     private ColorPicker colorPicker;
 
 
     public MenuPanel(RepresentationFactory factory, int colOffset) {
+
         this.colorPicker = new ColorPicker(factory, colOffset);
     }
 

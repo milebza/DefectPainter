@@ -13,6 +13,8 @@ public interface Representable {
 
     void setColor(Color color);
 
+    //char getColor();
+
     void fill();
 
     void draw();

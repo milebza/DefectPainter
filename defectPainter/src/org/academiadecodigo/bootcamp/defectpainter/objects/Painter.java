@@ -1,6 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
-import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.MovableRepresentation;
+import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.MovableRepresentationGfx;
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
 
 
@@ -13,7 +13,7 @@ public class Painter {
     private int row;
     private int gridWidth;
     private int gridHeight;
-    private MovableRepresentation painter;
+    private MovableRepresentationGfx painter;
     private boolean on;
 
     public Painter(int gridWidth, int gridHeight) {

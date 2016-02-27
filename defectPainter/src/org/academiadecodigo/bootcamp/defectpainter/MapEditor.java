@@ -1,8 +1,11 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
+import org.academiadecodigo.bootcamp.defectpainter.menu_tools.Brush;
+import org.academiadecodigo.bootcamp.defectpainter.menu_tools.Eraser;
+import org.academiadecodigo.bootcamp.defectpainter.menu_tools.Tool;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Cursor;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Grid;
 import org.academiadecodigo.bootcamp.defectpainter.objects.MenuPanel;
-import org.academiadecodigo.bootcamp.defectpainter.objects.Painter;
 import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Controller;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
@@ -21,9 +24,11 @@ public class MapEditor {
 
     public static final int DEFAULT_GRID_SIZE = 50;
     private static final int TOP_CORRECTION = 23;
+    private static Tool activeTool = new Brush();
+    private static ColorCorrelation activeColor = ColorCorrelation.BLACK;
     private RepresentationFactory factory;
     private Grid grid;
-    private Painter painter;
+    private Cursor cursor;
     private Controller controller;
     private MenuPanel menuPanel;
     private boolean spaceHold;
@@ -50,7 +55,7 @@ public class MapEditor {
     }
 
     private void initCommon() {
-        this.painter = new Painter(grid.getWidth(), grid.getHeight());
+        this.cursor = new Cursor(grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
         this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
     }
@@ -59,7 +64,7 @@ public class MapEditor {
 
         while (notOver) {
 
-            Thread.sleep(50);
+            Thread.sleep(1);
 
             pollKeyboardEvents();
             pollMouseEvents();
@@ -69,9 +74,26 @@ public class MapEditor {
     }
 
 
+    public void setActiveTool(Tool activeTool) {
+        this.activeTool = activeTool;
+    }
+
+    public static Tool getActiveTool() {
+        return activeTool;
+    }
+
+    public static ColorCorrelation getActiveColor() {
+        return activeColor;
+    }
+
+    public static void setActiveColor(ColorCorrelation activeColor) {
+        MapEditor.activeColor = activeColor;
+    }
+
     public void continuousPainting() {
         if (spaceHold) {
-            this.grid.changeState(painter.getCol(), painter.getRow());
+            activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+            //this.grid.changeState(cursor.getCol(), cursor.getRow());
         }
     }
 
@@ -87,19 +109,19 @@ public class MapEditor {
         if (event.getKeyboardEventType() == KeyboardEventType.KEY_PRESSED) {
             switch (event.getKey()) {
                 case KeyboardEvent.KEY_UP:
-                    painter.moveUp();
+                    cursor.moveUp();
                     continuousPainting();
                     break;
                 case KeyboardEvent.KEY_DOWN:
-                    painter.moveDown();
+                    cursor.moveDown();
                     continuousPainting();
                     break;
                 case KeyboardEvent.KEY_LEFT:
-                    painter.moveLeft();
+                    cursor.moveLeft();
                     continuousPainting();
                     break;
                 case KeyboardEvent.KEY_RIGHT:
-                    painter.moveRight();
+                    cursor.moveRight();
                     continuousPainting();
                     break;
                 case KeyboardEvent.KEY_L:
@@ -118,17 +140,29 @@ public class MapEditor {
                     }
                     break;
                 case KeyboardEvent.KEY_SPACE:
-                    this.grid.changeState(painter.getCol(), painter.getRow());
+                    activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                    //this.grid.changeState(cursor.getCol(), cursor.getRow());
                     spaceHold = true;
                     break;
                 case KeyboardEvent.KEY_C:
-                    painter.setOn(!painter.isOn());
+                    cursor.setOn(!cursor.isOn());
                     break;
                 case KeyboardEvent.KEY_X:
                     notOver = false;
                     break;
                 case KeyboardEvent.KEY_R:
                     grid.reset();
+                    break;
+                case KeyboardEvent.KEY_T: //cycle trough Tools to test before Tool buttons implemented.
+                    switch (activeTool.getToolType()) {
+                        case BRUSH:
+                            activeTool = new Eraser();
+                            break;
+                        case ERASER:
+                            activeTool = new Brush();
+                            break;
+                    }
+                    //TODO:(FILIPE)creating new every time... should have a class Menu, that have Tools Buttons to change activeTool.
                     break;
             }
         } else { //KEY.RELEASE
@@ -141,8 +175,8 @@ public class MapEditor {
     }
 
     private void resetSections() {
-        painter.delete();
-        painter = new Painter(grid.getWidth(), grid.getHeight());
+        cursor.delete();
+        cursor = new Cursor(grid.getWidth(), grid.getHeight());
 
         menuPanel.delete();
         this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
@@ -171,22 +205,29 @@ public class MapEditor {
             return;
         }
 
+        //Move painter (cursor) to mouse position
+        this.cursor.setCol(tempCol);
+        this.cursor.setRow(tempRow);
+
         switch (event.getEventType()) {
             case MOUSE_CLICKED:
-                this.grid.changeState(tempCol, tempRow);
-                //this.painter.setCol(tempCol);
-                //this.painter.setRow(tempRow);
-                break;
-            case MOUSE_DRAGGED:
-                this.grid.changeState(tempCol, tempRow);
-                //this.painter.setCol(tempCol);
-                //this.painter.setRow(tempRow);
+                activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
                 break;
             case MOUSE_MOVED:
                 break;
+            case MOUSE_PRESSED:
+                break;
+            case MOUSE_RELEASED:
+                break;
+            case MOUSE_ENTERED:
+                break;
+            case MOUSE_EXITED:
+                break;
+            case MOUSE_DRAGGED:
+                activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                break;
+
         }
-        this.painter.setCol(tempCol);
-        this.painter.setRow(tempRow);
 
 
     }

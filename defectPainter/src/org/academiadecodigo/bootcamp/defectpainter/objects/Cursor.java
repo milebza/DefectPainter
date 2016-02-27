@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
+import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.MovableRepresentationGfx;
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
 
@@ -7,21 +8,22 @@ import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
-public class Painter {
+public class Cursor {
 
     private int col;
     private int row;
     private int gridWidth;
     private int gridHeight;
-    private MovableRepresentationGfx painter;
+    private MovableRepresentationGfx cursor;
     private boolean on;
 
-    public Painter(int gridWidth, int gridHeight) {
+    public Cursor(int gridWidth, int gridHeight) {
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
         this.col = 0;
         this.row = 0;
-        this.painter = new PainterGfx(col, row);
+        this.cursor = new PainterGfx(col, row);
+        this.setOn(true);
     }
 
     public int getCol() {
@@ -33,12 +35,12 @@ public class Painter {
     }
 
     public void setCol(int col) {
-        painter.move(col - this.col, 0);
+        cursor.move(col - this.col, 0);
         this.col = col;
     }
 
     public void setRow(int row) {
-        painter.move(0, row - this.row);
+        cursor.move(0, row - this.row);
         this.row = row;
     }
 
@@ -47,44 +49,44 @@ public class Painter {
     }
 
     public void delete() {
-        painter.delete();
+        cursor.delete();
     }
 
     public void setOn(boolean on) {
 
         this.on = on;
         if (on) {
-            painter.fill();
+            cursor.draw();
         } else {
-            painter.delete();
+            cursor.delete();
         }
     }
 
     public void moveUp() {
         if (row != 0) {
             row--;
-            painter.move(0, -1);
+            cursor.move(0, -1);
         }
     }
 
     public void moveDown() {
         if (row != gridHeight - 1) {
             row++;
-            painter.move(0, 1);
+            cursor.move(0, 1);
         }
     }
 
     public void moveRight() {
         if (col != gridWidth - 1) {
             col++;
-            painter.move(1, 0);
+            cursor.move(1, 0);
         }
     }
 
     public void moveLeft() {
         if (col != 0) {
             col--;
-            painter.move(-1, 0);
+            cursor.move(-1, 0);
         }
     }
 

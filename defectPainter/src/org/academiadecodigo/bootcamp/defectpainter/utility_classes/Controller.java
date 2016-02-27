@@ -89,6 +89,11 @@ public class Controller implements KeyboardHandler, MouseHandler {
         keyReset.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(keyReset);
 
+        KeyboardEvent keyTool = new KeyboardEvent();
+        keyTool.setKey(KeyboardEvent.KEY_T);
+        keyTool.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(keyTool);
+
         KeyboardEvent keySpacePress = new KeyboardEvent();
         keySpacePress.setKey(KeyboardEvent.KEY_SPACE);
         keySpacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -107,18 +112,35 @@ public class Controller implements KeyboardHandler, MouseHandler {
 
     @Override
     public void keyReleased(KeyboardEvent e) {
-
         queueKeyboard.offer(e);
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
         queueMouse.offer(mouseEvent);
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
     }
 
     @Override

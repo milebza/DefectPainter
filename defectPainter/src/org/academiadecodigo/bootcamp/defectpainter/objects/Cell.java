@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -37,6 +38,10 @@ public class Cell {
 
     public void setRow(int row) {
         this.row = row;
+    }
+
+    public Representable getRepresentation() {
+        return representation;
     }
 
     public char getState() {

@@ -171,17 +171,25 @@ public class MapEditor {
             return;
         }
 
+        switch (event.getEventType()) {
+            case MOUSE_CLICKED:
+                this.grid.changeState(tempCol, tempRow);
+                //this.painter.setCol(tempCol);
+                //this.painter.setRow(tempRow);
+                break;
+            case MOUSE_DRAGGED:
+                this.grid.changeState(tempCol, tempRow);
+                //this.painter.setCol(tempCol);
+                //this.painter.setRow(tempRow);
+                break;
+            case MOUSE_MOVED:
+                break;
+        }
+        this.painter.setCol(tempCol);
+        this.painter.setRow(tempRow);
 
-        if (event.getEventType() == MouseEventType.MOUSE_CLICKED) {
-
-            this.grid.changeState(tempCol, tempRow);
-            this.painter.setCol(tempCol);
-            this.painter.setRow(tempRow);
-        } /*else { //MOUSE_MOVE
-            if (spaceHold) {
-                this.grid.changeState(Converter.xToCol((int) event.getX()), Converter.yToRow((int) event.getY() - TOP_CORRECTION));
-            }
-        }*/
 
     }
+
 }
+

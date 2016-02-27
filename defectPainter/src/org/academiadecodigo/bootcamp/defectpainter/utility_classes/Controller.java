@@ -122,7 +122,7 @@ public class Controller implements KeyboardHandler, MouseHandler {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-        System.out.println("-----------------DRAGED");
+    public void mouseDragged(MouseEvent mouseEvent) {
+        queueMouse.offer(mouseEvent);
     }
 }

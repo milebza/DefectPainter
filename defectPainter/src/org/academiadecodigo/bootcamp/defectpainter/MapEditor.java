@@ -20,7 +20,7 @@ import java.io.*;
  */
 public class MapEditor {
 
-    public static final int DEFAULT_GRID_SIZE = 50;
+    public static final int DEFAULT_GRID_SIZE = 30;
     private static final int TOP_CORRECTION = 23;
     private RepresentationFactory factory;
     private Grid grid;

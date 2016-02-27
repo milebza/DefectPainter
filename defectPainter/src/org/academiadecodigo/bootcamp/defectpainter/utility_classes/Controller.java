@@ -4,10 +4,7 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.mouse.Mouse;
-import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
-import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
-import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
+import org.academiadecodigo.bootcamp.defectpainter.mouse.*;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -41,6 +38,7 @@ public class Controller implements KeyboardHandler, MouseHandler {
 
     public void configMouse() {
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
+        mouse.addEventListener(MouseEventType.MOUSE_DRAGGED);
     }
 
     public void configKeys() {
@@ -91,6 +89,11 @@ public class Controller implements KeyboardHandler, MouseHandler {
         keyReset.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(keyReset);
 
+        KeyboardEvent keyTool = new KeyboardEvent();
+        keyTool.setKey(KeyboardEvent.KEY_T);
+        keyTool.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(keyTool);
+
         KeyboardEvent keySpacePress = new KeyboardEvent();
         keySpacePress.setKey(KeyboardEvent.KEY_SPACE);
         keySpacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -109,17 +112,39 @@ public class Controller implements KeyboardHandler, MouseHandler {
 
     @Override
     public void keyReleased(KeyboardEvent e) {
-
         queueKeyboard.offer(e);
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
         queueMouse.offer(mouseEvent);
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent) {
+        queueMouse.offer(mouseEvent);
     }
 }

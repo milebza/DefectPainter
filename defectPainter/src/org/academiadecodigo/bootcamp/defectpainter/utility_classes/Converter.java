@@ -20,12 +20,12 @@ public class Converter {
     }
 
     public static int xToCol(int x) {
-        System.out.println("X " + (x / COL_WIDTH));
+        //System.out.println("X " + (x / COL_WIDTH));
         return x / COL_WIDTH;
     }
 
     public static int yToRow(int y) {
-        System.out.println("Y " + (y / ROW_HEIGHT));
+        //System.out.println("Y " + (y / ROW_HEIGHT));
         return y / ROW_HEIGHT;
     }
 

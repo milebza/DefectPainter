@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 
 import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -14,7 +15,7 @@ public class Grid implements Iterable<Cell> {
     private Cell[][] cells;
 
     //initialized just to work while set color is not implemented
-    ColorCorrelation colorCorrelation = ColorCorrelation.BLACK;
+    private ColorCorrelation colorCorrelation = ColorCorrelation.BLACK;
 
     public Grid(RepresentationFactory factory, int width, int height) {
 
@@ -30,26 +31,40 @@ public class Grid implements Iterable<Cell> {
 
     }
 
-    public char get(int col, int row) {
+    public char getState(int col, int row) {
         return cells[row][col].getState();
     }
 
-    public void set(int col, int row, char paint) {
+    public void setState(int col, int row, char paint) {
         cells[row][col].setState(paint);
 
+    }
+
+    public Cell getCell(int col, int row) {
+        return cells[row][col];
     }
 
     //TODO: implementar isto consoante a cor seleccionada pelo rato no menu
     public void setColorCorrelation(ColorCorrelation colorCorrelation) {
         this.colorCorrelation = colorCorrelation;
+        //TODO: (Filipe) prefiro que a cor activa esteja como static no MapEditor e assim as Tools acedem facilmente.
+        //por agora faz o set no MapEditor aqui. Mas devia a ser feito directamente do MenuPanel.checkAction.
+        //O MenuPanel tem que receber grids pq? podia só setar as variaveis static to MapEditor. (activeColor, activeTool, etc)
+
+        MapEditor.setActiveColor(colorCorrelation);
     }
 
+    public ColorCorrelation getColorCorrelation() {
+        return colorCorrelation;
+    }
+
+    //With tools implemented no use for this.
     public void changeState(int col, int row) {
 
-        if (get(col, row) == ColorCorrelation.WHITE.getState()) {
-            set(col, row, colorCorrelation.getState());
+        if (getState(col, row) == ColorCorrelation.WHITE.getState()) {
+            setState(col, row, colorCorrelation.getState());
         } else {
-            set(col, row, ColorCorrelation.WHITE.getState());
+            setState(col, row, ColorCorrelation.WHITE.getState());
         }
     }
 

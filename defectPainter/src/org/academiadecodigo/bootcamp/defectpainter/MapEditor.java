@@ -157,44 +157,6 @@ public class MapEditor {
                 case KeyboardEvent.KEY_R:
                     grid.reset();
                     break;
-                case KeyboardEvent.KEY_T: //cycle trough Tools to test before Tool buttons implemented.
-                    switch (activeTool.getToolType()) {
-                        case BRUSH:
-                            activeTool = new Eraser();
-                            System.out.println(activeTool.getToolType());
-                            break;
-                        case ERASER:
-                            activeTool = new RectangleFilled();
-                            System.out.println(activeTool.getToolType());
-                            break;
-                        case RECTANGLE_FILLED:
-                            activeTool = new RectangleStroked();
-                            System.out.println(activeTool.getToolType());
-                            break;
-                        case RECTANGLE_STROKED:
-                            activeTool = new CircleFilled();
-                            System.out.println(activeTool.getToolType());
-                            break;
-                        case CIRCLE_FILLED:
-                            activeTool = new CircleStroked();
-                            System.out.println(activeTool.getToolType());
-                            break;
-                        case CIRCLE_STROKED:
-                            activeTool = new Spray();
-                            System.out.println(activeTool.getToolType());
-                            break;
-                        case SPRAY:
-                            activeTool = new PaintBucket();
-                            System.out.println(activeTool.getToolType());
-                            break;
-                        case PAINT_BUCKET:
-                            activeTool = new Brush();
-                            System.out.println(activeTool.getToolType());
-                            break;
-
-                    }
-                    //TODO:(FILIPE)creating new every time... should have a class Menu, that have Tools Buttons to change activeTool.
-                    break;
             }
         } else { //KEY.RELEASE
             switch (event.getKey()) {

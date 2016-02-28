@@ -182,6 +182,10 @@ public class MapEditor {
                             System.out.println(activeTool.getToolType());
                             break;
                         case CIRCLE_STROKED:
+                            activeTool = new Spray();
+                            System.out.println(activeTool.getToolType());
+                            break;
+                        case SPRAY:
                             activeTool = new Brush();
                             System.out.println(activeTool.getToolType());
                             break;

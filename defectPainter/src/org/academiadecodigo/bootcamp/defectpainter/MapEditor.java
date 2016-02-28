@@ -54,7 +54,7 @@ public class MapEditor {
     }
 
     private void initCommon() {
-        this.cursor = new Cursor(grid.getWidth(), grid.getHeight());
+        this.cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
         //this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
         this.menu = new Menu(factory, grid.getWidth() + 1);
@@ -207,7 +207,7 @@ public class MapEditor {
 
     private void resetSections() {
         cursor.delete();
-        cursor = new Cursor(grid.getWidth(), grid.getHeight());
+        cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
 /*
         menuPanel.delete();
         this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);

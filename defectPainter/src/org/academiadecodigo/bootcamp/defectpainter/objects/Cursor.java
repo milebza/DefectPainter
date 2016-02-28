@@ -14,15 +14,15 @@ public class Cursor {
     private int row;
     private int gridWidth;
     private int gridHeight;
-    private MovableRepresentationGfx cursor;
+    private Movable cursor;
     private boolean on;
 
-    public Cursor(int gridWidth, int gridHeight) {
+    public Cursor(RepresentationFactory factory, int gridWidth, int gridHeight) {
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
         this.col = 0;
         this.row = 0;
-        this.cursor = new PainterGfx(col, row);
+        this.cursor = factory.getCursor(col, row, CellType.RECTANGULAR);
         this.setOn(true);
     }
 

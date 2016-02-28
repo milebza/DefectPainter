@@ -55,8 +55,7 @@ public class PaintBucket extends Tool implements PressReleasable {
         }
 
         //recursive exit condition, if there are none to paint,
-        //TODO: stack overflow if all the grid is from the same color.
-        if (cellsAround.isEmpty()) {
+        if (cellsAround.isEmpty() || cellsAround.size() == 9) {
             return;
         }
 

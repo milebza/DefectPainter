@@ -13,4 +13,12 @@ public abstract class Tool implements Toolable {
     public void setToolType(ToolType toolType) {
         this.toolType = toolType;
     }
+
+
+    @Override
+    public String toString() {
+        return "Tool{" +
+                "toolType=" + toolType +
+                '}';
+    }
 }

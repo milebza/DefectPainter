@@ -16,6 +16,10 @@ public class ToolButton extends Button {
         //super.setRepresentSelected();
     }
 
+    public Toolable getToolable() {
+        return toolable;
+    }
+
     public void setActiveTool(/*should receive a Menu/MapEditor*/) {
         MapEditor.setActiveTool(this.toolable);
     }

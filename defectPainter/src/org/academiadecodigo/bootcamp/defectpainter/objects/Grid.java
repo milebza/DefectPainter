@@ -58,15 +58,7 @@ public class Grid implements Iterable<Cell> {
         return colorCorrelation;
     }
 
-    //With tools implemented no use for this.
-    public void changeState(int col, int row) {
 
-        if (getState(col, row) == ColorCorrelation.WHITE.getState()) {
-            setState(col, row, colorCorrelation.getState());
-        } else {
-            setState(col, row, ColorCorrelation.WHITE.getState());
-        }
-    }
 
     public void reset() {
 

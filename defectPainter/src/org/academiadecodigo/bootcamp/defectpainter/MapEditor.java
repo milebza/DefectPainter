@@ -163,20 +163,29 @@ public class MapEditor {
                     switch (activeTool.getToolType()) {
                         case BRUSH:
                             activeTool = new Eraser();
-                            System.out.println("KEY_T " + activeTool.getToolType());
+                            System.out.println(activeTool.getToolType());
                             break;
                         case ERASER:
                             activeTool = new RectangleFilled();
-                            System.out.println("KEY_T " + activeTool.getToolType());
+                            System.out.println(activeTool.getToolType());
                             break;
                         case RECTANGLE_FILLED:
                             activeTool = new RectangleStroked();
-                            System.out.println("KEY_T " + activeTool.getToolType());
+                            System.out.println(activeTool.getToolType());
                             break;
                         case RECTANGLE_STROKED:
-                            activeTool = new Brush();
-                            System.out.println("KEY_T " + activeTool.getToolType());
+                            activeTool = new CircleFilled();
+                            System.out.println(activeTool.getToolType());
                             break;
+                        case CIRCLE_FILLED:
+                            activeTool = new CircleStroked();
+                            System.out.println(activeTool.getToolType());
+                            break;
+                        case CIRCLE_STROKED:
+                            activeTool = new Brush();
+                            System.out.println(activeTool.getToolType());
+                            break;
+
                     }
                     //TODO:(FILIPE)creating new every time... should have a class Menu, that have Tools Buttons to change activeTool.
                     break;

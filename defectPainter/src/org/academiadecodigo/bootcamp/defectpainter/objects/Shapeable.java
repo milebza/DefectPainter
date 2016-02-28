@@ -1,8 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 /**
- * @author Filipe Jorge.
- *         At <Academia de Código_> on 28/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 
 public interface Shapeable extends Representable {

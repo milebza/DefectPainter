@@ -5,7 +5,7 @@ import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.objects.*;
 
 /**
- * Created by filipejorge on 27/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 
 //TODO: (FALCAO) this should replace the MenuPanel, right?

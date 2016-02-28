@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu.tools;
 
 /**
- * Created by filipejorge on 27/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public abstract class Tool implements Toolable {
     private ToolType toolType;

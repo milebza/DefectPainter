@@ -2,7 +2,7 @@ package org.academiadecodigo.bootcamp.defectpainter.menu.tools;
 
 
 /**
- * Created by Joana Falcão on 28/02/16
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class ToolFactory {
 

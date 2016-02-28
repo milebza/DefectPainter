@@ -56,7 +56,6 @@ public class MapEditor {
     private void initCommon() {
         this.cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
-        //this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
         this.menu = new Menu(factory, grid.getWidth() + 1);
     }
 
@@ -94,7 +93,6 @@ public class MapEditor {
         if (spaceHold) {
             if (activeTool instanceof OneClickable) {
                 ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
-                //this.grid.changeState(cursor.getCol(), cursor.getRow());
             }
         }
     }
@@ -144,7 +142,6 @@ public class MapEditor {
                 case KeyboardEvent.KEY_SPACE:
                     if (activeTool instanceof OneClickable) {
                         ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
-                        //this.grid.changeState(cursor.getCol(), cursor.getRow());
                     }
                     spaceHold = true;
                     break;
@@ -170,10 +167,7 @@ public class MapEditor {
     private void resetSections() {
         cursor.delete();
         cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
-/*
-        menuPanel.delete();
-        this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
-*/
+
         menu.delete();
         this.menu = new Menu(factory, grid.getWidth() + 1);
     }

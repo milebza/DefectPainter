@@ -4,7 +4,7 @@ import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.Toolable;
 
 /**
- * Created by filipejorge on 27/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class ToolButton extends Button {
 

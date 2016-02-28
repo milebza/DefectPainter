@@ -5,8 +5,7 @@ import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
- * @author Filipe Jorge.
- *         At <Academia de Código_> on 28/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 
 public class PictureRepresentationGfx implements Representable {

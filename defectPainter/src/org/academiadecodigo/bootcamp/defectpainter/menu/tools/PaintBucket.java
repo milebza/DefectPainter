@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by filipejorge on 27/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class PaintBucket extends Tool implements PressReleasable {
 

@@ -4,7 +4,7 @@ import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Cell;
 
 /**
- * Created by filipejorge on 27/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class Eraser extends Tool implements OneClickable {
 

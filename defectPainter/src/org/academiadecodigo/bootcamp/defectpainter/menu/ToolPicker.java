@@ -1,16 +1,14 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu;
 
 import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ToolButton;
-import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolFactory;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolType;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.Toolable;
-import org.academiadecodigo.bootcamp.defectpainter.objects.CellType;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 
 /**
- * Created by Joana Falcão on 28/02/16
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class ToolPicker {
 
@@ -45,16 +43,11 @@ public class ToolPicker {
 
             for (int j = 0; j < toolButtons[i].length; j++) {
 
-                //representation may change, this is just to check if it's in the right spot
                 representation = factory.getButtonPicture(colOffSet + j, rowOfSet + i, pathFiles[toolIndex]);
 
                 toolButtons[i][j] = new ToolButton(ToolFactory.getTool(ToolType.values()[toolIndex]));
-
                 toolButtons[i][j].setRepresentNormal(representation);
-
                 toolButtons[i][j].setRepresentSelected(representation);
-
-                //System.out.println(toolButtons[i][j].getToolable().getToolType());
 
                 toolIndex++;
 

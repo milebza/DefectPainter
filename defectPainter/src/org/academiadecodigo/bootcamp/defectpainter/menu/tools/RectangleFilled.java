@@ -7,7 +7,7 @@ import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 /**
- * Created by filipejorge on 27/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class RectangleFilled extends Tool implements PressReleasable {
 

@@ -3,7 +3,7 @@ package org.academiadecodigo.bootcamp.defectpainter.menu.buttons;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 
 /**
- * Created by filipejorge on 27/02/16.
+ * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public abstract class Button {
 

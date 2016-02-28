@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.defectpainter;
+package org.academiadecodigo.bootcamp.defectpainter.menu.colors;
 
 
 import org.academiadecodigo.simplegraphics.graphics.Color;

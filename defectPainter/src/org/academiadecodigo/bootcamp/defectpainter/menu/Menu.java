@@ -1,27 +1,40 @@
-package org.academiadecodigo.bootcamp.defectpainter.objects;
+package org.academiadecodigo.bootcamp.defectpainter.menu;
 
-
-import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ColorButton;
+import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ToolButton;
+import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.menu.tools.*;
+import org.academiadecodigo.bootcamp.defectpainter.objects.*;
 
 /**
- * Created by milena, filipe, joana, ita on 24/02/16.
+ * Created by filipejorge on 27/02/16.
  */
-public class MenuPanel {
-    //TODO: Colors to add, 6 colors: white, black, red, green, blue, yellow.
+public class Menu {
 
     private static final int SECTION_MARGIN = 1;
+    private ToolButton[] toolButtons;
     private ColorPicker colorPicker;
     private Cell[] selectedColor;
 
 
-    public MenuPanel(RepresentationFactory factory, int colOffset) {
+    public Menu(RepresentationFactory factory, int colOffset) {
 
         //TODO: Separate sections init stuff
+
+        initTools();
 
         initColorPicker(factory, colOffset);
 
         initCurrentColorSection(factory, colOffset);
+
+    }
+
+    public void initTools() {
+        toolButtons = new ToolButton[2];
+
+        toolButtons[0] = new ToolButton(new Brush());
+        toolButtons[1] = new ToolButton(new Eraser());
+
 
     }
 

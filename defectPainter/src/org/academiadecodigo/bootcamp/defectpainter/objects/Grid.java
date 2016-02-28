@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 
-import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
 
 import java.util.Iterator;

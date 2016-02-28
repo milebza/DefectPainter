@@ -1,13 +1,8 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
 
-import org.academiadecodigo.bootcamp.defectpainter.objects.ColorPicker;
-import org.academiadecodigo.bootcamp.defectpainter.objects.MenuPanel;
 import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.RepresentationGfxFactory;
-import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.

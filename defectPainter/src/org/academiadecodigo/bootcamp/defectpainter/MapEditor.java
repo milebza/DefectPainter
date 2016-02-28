@@ -1,11 +1,11 @@
 package org.academiadecodigo.bootcamp.defectpainter;
 
-import org.academiadecodigo.bootcamp.defectpainter.menu_tools.Brush;
-import org.academiadecodigo.bootcamp.defectpainter.menu_tools.Eraser;
-import org.academiadecodigo.bootcamp.defectpainter.menu_tools.Tool;
+import org.academiadecodigo.bootcamp.defectpainter.menu.Menu;
+import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.menu.tools.*;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Cursor;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Grid;
-import org.academiadecodigo.bootcamp.defectpainter.objects.MenuPanel;
+import org.academiadecodigo.bootcamp.defectpainter.menu.MenuPanel;
 import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Controller;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
@@ -24,13 +24,14 @@ public class MapEditor {
 
     public static final int DEFAULT_GRID_SIZE = 30;
     private static final int TOP_CORRECTION = 23;
-    private static Tool activeTool = new Brush();
+    private static Toolable activeTool = new Brush();
     private static ColorCorrelation activeColor = ColorCorrelation.BLACK;
     private RepresentationFactory factory;
     private Grid grid;
     private Cursor cursor;
     private Controller controller;
     private MenuPanel menuPanel;
+    private Menu menu;
     private boolean spaceHold;
 
     private boolean notOver = true;
@@ -57,7 +58,8 @@ public class MapEditor {
     private void initCommon() {
         this.cursor = new Cursor(grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
-        this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
+        //this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
+        this.menu = new Menu(factory, grid.getWidth() + 1);
     }
 
     public void start() throws InterruptedException {
@@ -74,11 +76,11 @@ public class MapEditor {
     }
 
 
-    public void setActiveTool(Tool activeTool) {
-        this.activeTool = activeTool;
+    public static void setActiveTool(Toolable tool) {
+        activeTool = tool;
     }
 
-    public static Tool getActiveTool() {
+    public static Toolable getActiveTool() {
         return activeTool;
     }
 
@@ -92,8 +94,10 @@ public class MapEditor {
 
     public void continuousPainting() {
         if (spaceHold) {
-            activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
-            //this.grid.changeState(cursor.getCol(), cursor.getRow());
+            if (activeTool instanceof OneClickable) {
+                ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                //this.grid.changeState(cursor.getCol(), cursor.getRow());
+            }
         }
     }
 
@@ -140,8 +144,10 @@ public class MapEditor {
                     }
                     break;
                 case KeyboardEvent.KEY_SPACE:
-                    activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
-                    //this.grid.changeState(cursor.getCol(), cursor.getRow());
+                    if (activeTool instanceof OneClickable) {
+                        ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                        //this.grid.changeState(cursor.getCol(), cursor.getRow());
+                    }
                     spaceHold = true;
                     break;
                 case KeyboardEvent.KEY_C:
@@ -157,9 +163,19 @@ public class MapEditor {
                     switch (activeTool.getToolType()) {
                         case BRUSH:
                             activeTool = new Eraser();
+                            System.out.println("KEY_T " + activeTool.getToolType());
                             break;
                         case ERASER:
+                            activeTool = new RectangleFilled();
+                            System.out.println("KEY_T " + activeTool.getToolType());
+                            break;
+                        case RECTANGLE_FILLED:
+                            activeTool = new RectangleStroked();
+                            System.out.println("KEY_T " + activeTool.getToolType());
+                            break;
+                        case RECTANGLE_STROKED:
                             activeTool = new Brush();
+                            System.out.println("KEY_T " + activeTool.getToolType());
                             break;
                     }
                     //TODO:(FILIPE)creating new every time... should have a class Menu, that have Tools Buttons to change activeTool.
@@ -180,6 +196,9 @@ public class MapEditor {
 
         menuPanel.delete();
         this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
+
+        menu.delete();
+        this.menu = new Menu(factory, grid.getWidth() + 1);
     }
 
     public void pollMouseEvents() {
@@ -195,10 +214,10 @@ public class MapEditor {
         if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 ||
                 event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
 
-            if (tempCol > grid.getWidth() && tempCol < menuPanel.getWidth() && tempRow < menuPanel.getHeight() &&
+            if (tempCol > grid.getWidth() && tempCol < menu.getWidth() && tempRow < menu.getHeight() &&
                     event.getY() > Converter.TOP_MARGIN + TOP_CORRECTION) {
 
-                this.menuPanel.checkAction(this.grid, tempCol, tempRow);
+                this.menu.checkAction(this.grid, tempCol, tempRow);
 
             }
 
@@ -211,20 +230,30 @@ public class MapEditor {
 
         switch (event.getEventType()) {
             case MOUSE_CLICKED:
-                activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                if (activeTool instanceof OneClickable) {
+                    ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                }
                 break;
             case MOUSE_MOVED:
                 break;
             case MOUSE_PRESSED:
+                if (activeTool instanceof PressReleasable) {
+                    ((PressReleasable) activeTool).onPress(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                }
                 break;
             case MOUSE_RELEASED:
+                if (activeTool instanceof PressReleasable) {
+                    ((PressReleasable) activeTool).onRelease(this.grid.getCell(cursor.getCol(), cursor.getRow()), this.grid);
+                }
                 break;
             case MOUSE_ENTERED:
                 break;
             case MOUSE_EXITED:
                 break;
             case MOUSE_DRAGGED:
-                activeTool.act(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                if (activeTool instanceof OneClickable) {
+                    ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                }
                 break;
 
         }

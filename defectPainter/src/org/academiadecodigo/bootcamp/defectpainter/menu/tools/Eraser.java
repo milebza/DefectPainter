@@ -1,22 +1,20 @@
-package org.academiadecodigo.bootcamp.defectpainter.menu_tools;
+package org.academiadecodigo.bootcamp.defectpainter.menu.tools;
 
-import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Cell;
 
 /**
  * Created by filipejorge on 27/02/16.
  */
-public class Eraser extends Tool {
+public class Eraser extends Tool implements OneClickable {
 
     public Eraser() {
         super.setToolType(ToolType.ERASER);
     }
 
     @Override
-    public void act(Cell cell) {
-
+    public void onClick(Cell cell) {
         cell.setState(ColorCorrelation.WHITE.getState());
-
     }
 
 }

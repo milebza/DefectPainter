@@ -1,7 +1,10 @@
-package org.academiadecodigo.bootcamp.defectpainter.objects;
+package org.academiadecodigo.bootcamp.defectpainter.menu;
 
-import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Cell;
+import org.academiadecodigo.bootcamp.defectpainter.objects.CellType;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
+import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.

@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
-import org.academiadecodigo.bootcamp.defectpainter.ColorCorrelation;
-import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
+import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.

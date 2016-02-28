@@ -39,6 +39,8 @@ public class Controller implements KeyboardHandler, MouseHandler {
     public void configMouse() {
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
         mouse.addEventListener(MouseEventType.MOUSE_DRAGGED);
+        mouse.addEventListener(MouseEventType.MOUSE_PRESSED);
+        mouse.addEventListener(MouseEventType.MOUSE_RELEASED);
     }
 
     public void configKeys() {
@@ -126,11 +128,12 @@ public class Controller implements KeyboardHandler, MouseHandler {
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
+        queueMouse.offer(mouseEvent);
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-
+        queueMouse.offer(mouseEvent);
     }
 
     @Override

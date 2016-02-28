@@ -186,6 +186,10 @@ public class MapEditor {
                             System.out.println(activeTool.getToolType());
                             break;
                         case SPRAY:
+                            activeTool = new PaintBucket();
+                            System.out.println(activeTool.getToolType());
+                            break;
+                        case PAINT_BUCKET:
                             activeTool = new Brush();
                             System.out.println(activeTool.getToolType());
                             break;

@@ -14,7 +14,7 @@ public class Cursor {
     private int row;
     private int gridWidth;
     private int gridHeight;
-    private MovableRepresentationGfx cursor;
+    private Movable cursor;
     private boolean on;
 
     public Cursor(int gridWidth, int gridHeight) {

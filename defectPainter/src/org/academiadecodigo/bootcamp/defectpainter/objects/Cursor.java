@@ -1,9 +1,5 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
-import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
-import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.MovableRepresentationGfx;
-import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
-
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.

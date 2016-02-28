@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu.buttons;
 
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 
 /**
  * Created by filipejorge on 27/02/16.
@@ -8,6 +9,27 @@ import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 public class ColorButton extends Button {
 
     private ColorCorrelation colorCorrelation;
+
+
+    public ColorButton(ColorCorrelation colorCorrelation, Representable representable) {
+        super.setRepresentNormal(representable);
+        super.setRepresentSelected(representable);
+        this.colorCorrelation = colorCorrelation;
+
+    }
+
+    public ColorCorrelation getColorCorrelation() {
+        return colorCorrelation;
+    }
+
+    public void setColorCorrelation(ColorCorrelation colorCorrelation) {
+        this.colorCorrelation = colorCorrelation;
+    }
+
+    public void delete() {
+        this.getRepresentNormal().delete();
+        this.getRepresentSelected().delete();
+    }
 
 
 }

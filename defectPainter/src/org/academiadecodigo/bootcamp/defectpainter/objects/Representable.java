@@ -10,11 +10,9 @@ public interface Representable {
 
     int getRow();
 
-    void setColor(char color);
-
-    void fill();
-
     void draw();
 
     void delete();
+
+
 }

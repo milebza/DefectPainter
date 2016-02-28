@@ -1,7 +1,10 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu;
 
+import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ColorButton;
+import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ToolButton;
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
-import org.academiadecodigo.bootcamp.defectpainter.objects.Cell;
+import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolFactory;
+import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolType;
 import org.academiadecodigo.bootcamp.defectpainter.objects.CellType;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
@@ -11,20 +14,20 @@ import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory
  */
 public class ColorPicker {
     private static final int DEFAULT_COLORS_PER_LINE = 2;
-    private int col;
-    private Cell[][] colorPalette;
+    private int colOffset;
+    private ColorButton[][] colorButtons;
 
-    public Cell[][] getColorPalette() {
-        return colorPalette;
-    }
+    /*public Cell[][] getColorPalette() {
+        return colorButtons;
+    }*/
 
     public ColorPicker(RepresentationFactory factory, int colOffset) {
-        this.col = colOffset;
+        this.colOffset = colOffset;
         init(factory, DEFAULT_COLORS_PER_LINE);
     }
 
     public ColorPicker(RepresentationFactory factory, int colOffset, int numberOfColorsPerLine) {
-        this.col = colOffset;
+        this.colOffset = colOffset;
         init(factory, numberOfColorsPerLine);
     }
 
@@ -32,20 +35,19 @@ public class ColorPicker {
         int rows = ColorCorrelation.values().length / numberOfColorsPerLine;
         int cols = numberOfColorsPerLine;
 
-        colorPalette = new Cell[rows][cols];
+        colorButtons = new ColorButton[rows][cols];
         int colorIndex = 0;
         Representable representation = null;
 
-        for (int i = 0; i < colorPalette.length; i++) {
+        for (int i = 0; i < colorButtons.length; i++) {
 
-            for (int j = 0; j < colorPalette[i].length; j++) {
+            for (int j = 0; j < colorButtons[i].length; j++) {
 
-                representation = factory.getCell(col + j, i, CellType.ROUND);
+                //representation may change, this is just to check if it's in the right spot
+                representation = factory.getCell(colOffset + j, i, CellType.ROUND);
                 representation.setColor((ColorCorrelation.values()[colorIndex].getState()));
-
-                colorPalette[i][j] = new Cell(col + j, i, representation);
-
-                colorPalette[i][j].setState(ColorCorrelation.values()[colorIndex].getState());
+                representation.fill();
+                colorButtons[i][j] = new ColorButton(ColorCorrelation.values()[colorIndex], representation);
 
                 colorIndex++;
 
@@ -56,25 +58,25 @@ public class ColorPicker {
     }
 
     public void delete() {
-        for (int i = 0; i < colorPalette.length; i++) {
+        for (int i = 0; i < colorButtons.length; i++) {
 
-            for (int j = 0; j < colorPalette[i].length; j++) {
-                colorPalette[i][j].delete();
+            for (int j = 0; j < colorButtons[i].length; j++) {
+                colorButtons[i][j].delete();
             }
 
         }
     }
 
     public char getColor(int col, int row) {
-        return colorPalette[row][col].getState();
+        return colorButtons[row][col].getColorCorrelation().getState();
     }
 
     public int getWidth() {
-        return colorPalette[0].length + col;
+        return colorButtons[0].length + colOffset;
     }
 
     public int getHeight() {
-        return colorPalette.length;
+        return colorButtons.length;
     }
 
 }

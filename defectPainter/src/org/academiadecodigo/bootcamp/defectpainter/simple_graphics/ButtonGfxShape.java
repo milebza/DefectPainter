@@ -9,10 +9,10 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
-public class CellGfx extends RepresentationGfx {
+public class ButtonGfxShape extends ShapeRepresentationGfx {
 
 
-    public CellGfx(int col, int row, CellType cellType) {
+    public ButtonGfxShape(int col, int row, CellType cellType) {
 
         switch (cellType) {
 
@@ -25,6 +25,11 @@ public class CellGfx extends RepresentationGfx {
                 super.setShape(new Rectangle(Converter.colToX(col) + Converter.LEFT_MARGIN, Converter.rowToY(row) + Converter.TOP_MARGIN,
                         Converter.COL_WIDTH, Converter.ROW_HEIGHT), ColorCorrelation.WHITE.getState());
                 break;
+
+            case PICTURE:
+                super.setPicture
+
+
         }
     }
 

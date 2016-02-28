@@ -5,5 +5,6 @@ package org.academiadecodigo.bootcamp.defectpainter.objects;
  */
 public enum CellType {
     ROUND,
-    RECTANGULAR;
+    RECTANGULAR,
+    PICTURE
 }

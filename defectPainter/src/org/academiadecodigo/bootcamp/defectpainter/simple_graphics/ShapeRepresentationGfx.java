@@ -1,24 +1,28 @@
 package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Shapeable;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 import org.academiadecodigo.simplegraphics.graphics.Colorable;
 import org.academiadecodigo.simplegraphics.graphics.Fillable;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
-public abstract class RepresentationGfx implements Representable {
+public abstract class ShapeRepresentationGfx implements Shapeable {
 
     private Shape shape;
+
 
     public void setShape(Shape shape, char color) {
         this.shape = shape;
         setColor(color);
         shape.draw();
     }
+
 
     public Shape getShape() {
         return shape;

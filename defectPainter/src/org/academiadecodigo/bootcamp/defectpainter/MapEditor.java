@@ -5,7 +5,6 @@ import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.*;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Cursor;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Grid;
-import org.academiadecodigo.bootcamp.defectpainter.menu.MenuPanel;
 import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Controller;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
@@ -30,7 +29,6 @@ public class MapEditor {
     private Grid grid;
     private Cursor cursor;
     private Controller controller;
-    private MenuPanel menuPanel;
     private Menu menu;
     private boolean spaceHold;
 
@@ -56,7 +54,7 @@ public class MapEditor {
     }
 
     private void initCommon() {
-        this.cursor = new Cursor(grid.getWidth(), grid.getHeight());
+        this.cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
         //this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
         this.menu = new Menu(factory, grid.getWidth() + 1);
@@ -209,7 +207,7 @@ public class MapEditor {
 
     private void resetSections() {
         cursor.delete();
-        cursor = new Cursor(grid.getWidth(), grid.getHeight());
+        cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
 /*
         menuPanel.delete();
         this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);

@@ -1,9 +1,5 @@
 package org.academiadecodigo.bootcamp.defectpainter.objects;
 
-import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
-import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.MovableRepresentationGfx;
-import org.academiadecodigo.bootcamp.defectpainter.simple_graphics.PainterGfx;
-
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -17,12 +13,12 @@ public class Cursor {
     private Movable cursor;
     private boolean on;
 
-    public Cursor(int gridWidth, int gridHeight) {
+    public Cursor(RepresentationFactory factory, int gridWidth, int gridHeight) {
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
         this.col = 0;
         this.row = 0;
-        this.cursor = new PainterGfx(col, row);
+        this.cursor = factory.getCursor(col, row, CellType.RECTANGULAR);
         this.setOn(true);
     }
 

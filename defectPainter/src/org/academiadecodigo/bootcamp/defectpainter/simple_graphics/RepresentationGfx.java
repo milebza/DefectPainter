@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 
+import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -16,7 +17,7 @@ public abstract class RepresentationGfx implements Representable {
     private Shape shape;
 
 
-    public void setShape(Shape shape, Color color) {
+    public void setShape(Shape shape, char color) {
         this.shape = shape;
         setColor(color);
         shape.draw();
@@ -27,9 +28,12 @@ public abstract class RepresentationGfx implements Representable {
         return shape;
     }
 
-    public void setColor(Color color) {
+    public void setColor(char color) {
+
+        ColorCorrelation c = ColorCorrelation.converter(color);
+
         if (shape instanceof Colorable) {
-            ((Colorable) shape).setColor(color);
+            ((Colorable) shape).setColor(c.getColor());
         }
     }
 

@@ -51,13 +51,13 @@ public class Cell {
 
         this.state = state;
 
-        ColorCorrelation c = ColorCorrelation.converter(state);
+        //ColorCorrelation c = ColorCorrelation.converter(state);
 
         if (state == ColorCorrelation.WHITE.getState()) {
-            this.representation.setColor(c.getColor());
+            this.representation.setColor(state);
             this.representation.draw();
         } else {
-            this.representation.setColor(c.getColor());
+            this.representation.setColor(state);
             this.representation.fill();
         }
     }

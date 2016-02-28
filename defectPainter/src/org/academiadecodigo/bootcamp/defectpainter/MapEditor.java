@@ -210,10 +210,10 @@ public class MapEditor {
     private void resetSections() {
         cursor.delete();
         cursor = new Cursor(grid.getWidth(), grid.getHeight());
-
+/*
         menuPanel.delete();
         this.menuPanel = new MenuPanel(factory, grid.getWidth() + 1);
-
+*/
         menu.delete();
         this.menu = new Menu(factory, grid.getWidth() + 1);
     }

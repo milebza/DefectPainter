@@ -12,7 +12,6 @@ import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory
 public class ColorPicker {
     private static final int DEFAULT_COLORS_PER_LINE = 2;
     private int col;
-    //private int row;
     private Cell[][] colorPalette;
 
     public Cell[][] getColorPalette() {
@@ -21,13 +20,11 @@ public class ColorPicker {
 
     public ColorPicker(RepresentationFactory factory, int colOffset) {
         this.col = colOffset;
-        //this.row = 0;
         init(factory, DEFAULT_COLORS_PER_LINE);
     }
 
     public ColorPicker(RepresentationFactory factory, int colOffset, int numberOfColorsPerLine) {
         this.col = colOffset;
-        //this.row = 0;
         init(factory, numberOfColorsPerLine);
     }
 

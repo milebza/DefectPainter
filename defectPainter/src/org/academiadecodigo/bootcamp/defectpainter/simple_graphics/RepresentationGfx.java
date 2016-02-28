@@ -3,7 +3,6 @@ package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Colorable;
 import org.academiadecodigo.simplegraphics.graphics.Fillable;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
@@ -13,15 +12,12 @@ import org.academiadecodigo.simplegraphics.graphics.Shape;
  */
 public abstract class RepresentationGfx implements Representable {
 
-
     private Shape shape;
-
 
     public void setShape(Shape shape, char color) {
         this.shape = shape;
         setColor(color);
         shape.draw();
-
     }
 
     public Shape getShape() {

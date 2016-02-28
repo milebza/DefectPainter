@@ -51,8 +51,6 @@ public class Cell {
 
         this.state = state;
 
-        //ColorCorrelation c = ColorCorrelation.converter(state);
-
         if (state == ColorCorrelation.WHITE.getState()) {
             this.representation.setColor(state);
             this.representation.draw();

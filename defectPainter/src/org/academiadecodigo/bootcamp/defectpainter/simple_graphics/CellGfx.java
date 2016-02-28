@@ -3,7 +3,6 @@ package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.objects.CellType;
 import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Converter;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 

@@ -8,6 +8,7 @@ import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolType;
 import org.academiadecodigo.bootcamp.defectpainter.objects.CellType;
 import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
 import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
+import org.academiadecodigo.bootcamp.defectpainter.objects.Shapeable;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -37,14 +38,14 @@ public class ColorPicker {
 
         colorButtons = new ColorButton[rows][cols];
         int colorIndex = 0;
-        Representable representation = null;
+        Shapeable representation = null;
 
         for (int i = 0; i < colorButtons.length; i++) {
 
             for (int j = 0; j < colorButtons[i].length; j++) {
 
                 //representation may change, this is just to check if it's in the right spot
-                representation = factory.getCell(colOffset + j, i, CellType.ROUND);
+                representation = factory.getColorButton(colOffset + j, i, CellType.ROUND);
                 representation.setColor((ColorCorrelation.values()[colorIndex].getState()));
                 representation.fill();
                 colorButtons[i][j] = new ColorButton(ColorCorrelation.values()[colorIndex], representation);

@@ -10,9 +10,9 @@ public class Cell {
     private int col;
     private int row;
     private char state;
-    private Representable representation;
+    private Shapeable representation;
 
-    public Cell(int col, int row, Representable representation) {
+    public Cell(int col, int row, Shapeable representation) {
         this.col = col;
         this.row = row;
         this.state = ColorCorrelation.WHITE.getState();

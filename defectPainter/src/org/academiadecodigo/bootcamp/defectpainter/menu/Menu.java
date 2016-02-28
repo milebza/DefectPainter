@@ -53,7 +53,7 @@ public class Menu {
     }
 
     private void initCurrentColorSection(RepresentationFactory factory, int colOffset) {
-        Representable cellRepresentation = null;
+        Shapeable cellRepresentation = null;
         this.selectedColor = new Cell[colorPicker.getWidth() - colOffset];
 
         for (int i = 0; i < selectedColor.length; i++) {

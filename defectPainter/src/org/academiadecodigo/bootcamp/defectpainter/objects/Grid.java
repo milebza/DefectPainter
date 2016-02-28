@@ -20,7 +20,7 @@ public class Grid implements Iterable<Cell> {
     public Grid(RepresentationFactory factory, int width, int height) {
 
         cells = new Cell[height][width];
-        Representable cellRepresentation = null;
+        Shapeable cellRepresentation = null;
 
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {

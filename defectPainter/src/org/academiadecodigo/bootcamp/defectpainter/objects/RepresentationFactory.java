@@ -5,10 +5,12 @@ package org.academiadecodigo.bootcamp.defectpainter.objects;
  */
 public interface RepresentationFactory {
 
-    Representable getCell(int col, int row, CellType cellType);
+    Shapeable getCell(int col, int row, CellType cellType);
 
     Movable getCursor(int col, int row, CellType cellType);
 
-    Representable getColorButton(int col, int row, CellType cellType);
+    Shapeable getColorButton(int col, int row, CellType cellType);
+
+    Representable getButtonPicture(int col, int row, String file);
 
 }

@@ -1,9 +1,6 @@
 package org.academiadecodigo.bootcamp.defectpainter.simple_graphics;
 
-import org.academiadecodigo.bootcamp.defectpainter.objects.CellType;
-import org.academiadecodigo.bootcamp.defectpainter.objects.Movable;
-import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
-import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
+import org.academiadecodigo.bootcamp.defectpainter.objects.*;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -11,7 +8,7 @@ import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory
 public class RepresentationGfxFactory implements RepresentationFactory {
 
     @Override
-    public Representable getCell(int col, int row, CellType cellType) {
+    public Shapeable getCell(int col, int row, CellType cellType) {
         return new CellGfxShape(col, row, cellType);
     }
 
@@ -22,7 +19,12 @@ public class RepresentationGfxFactory implements RepresentationFactory {
 
 
     @Override
-    public Representable getColorButton(int col, int row, CellType cellType) {
-        return new ButtonGfxShape();
+    public Shapeable getColorButton(int col, int row, CellType cellType) {
+        return new ButtonGfxShape(col, row, cellType);
+    }
+
+    @Override
+    public Representable getButtonPicture(int col, int row, String file) {
+        return new ButtonGfxPicture(col, row, file);
     }
 }

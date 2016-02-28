@@ -32,6 +32,9 @@ public class ToolPicker {
         int rows = ToolType.values().length / numberOfToolsPerLine;
         int cols = numberOfToolsPerLine;
 
+        String[] pathFiles = {"resources/brush.png", "resources/brush.png", "resources/brush.png", "resources/brush.png",
+                "resources/brush.png", "resources/brush.png", "resources/brush.png", "resources/brush.png"};
+
         toolButtons = new ToolButton[rows][cols];
 
         int toolIndex = 0;
@@ -43,13 +46,13 @@ public class ToolPicker {
             for (int j = 0; j < toolButtons[i].length; j++) {
 
                 //representation may change, this is just to check if it's in the right spot
-                representation = factory.getCell(colOffSet + j, rowOfSet + i, CellType.RECTANGULAR);
-
-                representation.setColor(ColorCorrelation.BLACK.getState());
+                representation = factory.getButtonPicture(colOffSet + j, rowOfSet + i, pathFiles[toolIndex]);
 
                 toolButtons[i][j] = new ToolButton(ToolFactory.getTool(ToolType.values()[toolIndex]));
 
                 toolButtons[i][j].setRepresentNormal(representation);
+
+                toolButtons[i][j].setRepresentSelected(representation);
 
                 //System.out.println(toolButtons[i][j].getToolable().getToolType());
 

@@ -26,8 +26,6 @@ public class ButtonGfxShape extends ShapeRepresentationGfx {
                         Converter.COL_WIDTH, Converter.ROW_HEIGHT), ColorCorrelation.WHITE.getState());
                 break;
 
-            case PICTURE:
-                super.setPicture
 
 
         }

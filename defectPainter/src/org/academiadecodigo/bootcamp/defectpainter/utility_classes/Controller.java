@@ -28,12 +28,12 @@ public class Controller implements KeyboardHandler, MouseHandler {
         configMouse();
     }
 
-    public Queue<KeyboardEvent> getQueueKeyboard() {
-        return queueKeyboard;
+    public KeyboardEvent keyboardPoll(){
+        return queueKeyboard.poll();
     }
 
-    public Queue<MouseEvent> getQueueMouse() {
-        return queueMouse;
+    public MouseEvent mousePoll(){
+        return queueMouse.poll();
     }
 
     public void configMouse() {

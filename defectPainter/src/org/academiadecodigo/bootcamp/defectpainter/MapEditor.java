@@ -105,7 +105,7 @@ public class MapEditor {
      */
     public void pollKeyboardEvents() {
 
-        KeyboardEvent event = controller.getQueueKeyboard().poll();
+        KeyboardEvent event = controller.keyboardPoll();
 
         if (event == null) {
             return;
@@ -160,9 +160,12 @@ public class MapEditor {
         }
     }
 
+    /**
+     * Save current grid in test.txt file
+     */
     public void save() {
         try {
-            Streamer.save("resources/test.txt", this.grid);
+            Streamer.save("saved_files/test.txt", this.grid);
         } catch (IOException e) {
             e.getMessage();
         }
@@ -170,7 +173,7 @@ public class MapEditor {
 
     public void load() {
         try {
-            this.grid = Streamer.load(factory, "resources/test.txt", grid);
+            this.grid = Streamer.load(factory, "saved_files/test.txt", grid);
             resetSections();
         } catch (IOException e) {
             e.getMessage();
@@ -186,7 +189,7 @@ public class MapEditor {
     }
 
     public void pollMouseEvents() {
-        MouseEvent event = controller.getQueueMouse().poll();
+        MouseEvent event = controller.mousePoll();
 
         if (event == null) {
             return;

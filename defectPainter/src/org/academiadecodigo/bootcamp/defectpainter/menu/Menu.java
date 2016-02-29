@@ -1,18 +1,19 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu;
 
-import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
+import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ToolButton;
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
+import org.academiadecodigo.bootcamp.defectpainter.menu.tools.Toolable;
 import org.academiadecodigo.bootcamp.defectpainter.objects.*;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
 
-//TODO: (FALCAO) this should replace the MenuPanel, right?
 public class Menu {
 
     private static final int SECTION_MARGIN = 1;
     //private ToolButton[] toolButtons;
+
     private ColorPicker colorPicker;
     private Cell[] selectedColor;
 
@@ -20,15 +21,10 @@ public class Menu {
 
     public Menu(RepresentationFactory factory, int colOffset) {
 
-        //TODO: Separate sections init stuff
-
-        //initTools();
-
         initColorPicker(factory, colOffset);
 
         initCurrentColorSection(factory, colOffset);
 
-        //TODO: (FALCAO) colOffSet and rowOffSet must be checked accordingly all other stuff in menu!!!
         initToolPicker(factory, colOffset, colorPicker.getHeight() + SECTION_MARGIN * 3);
 
     }
@@ -38,15 +34,6 @@ public class Menu {
         this.toolPicker = new ToolPicker(representationFactory, colOffSet, rowOffSet);
     }
 
-
-    /*public void initTools() {
-        toolButtons = new ToolButton[2];
-
-        toolButtons[0] = new ToolButton(new Brush());
-        toolButtons[1] = new ToolButton(new Eraser());
-
-
-    }*/
 
     private void initColorPicker(RepresentationFactory factory, int colOffset) {
         this.colorPicker = new ColorPicker(factory, colOffset);
@@ -59,8 +46,12 @@ public class Menu {
         for (int i = 0; i < selectedColor.length; i++) {
             cellRepresentation = factory.getCell(colOffset + i, colorPicker.getHeight() + SECTION_MARGIN, CellType.RECTANGULAR);
             selectedColor[i] = new Cell(colOffset + i, colorPicker.getHeight() + SECTION_MARGIN, cellRepresentation);
+            selectedColor[i].setState(ColorCorrelation.BLACK.getState());
         }
+
+
     }
+
 
     public void checkAction(Grid grid, int col, int row) {
 
@@ -79,14 +70,22 @@ public class Menu {
 
         } else if (col < toolPicker.getWidth() && row < toolPicker.getHeight()) {
 
-            MapEditor.setActiveTool(toolPicker.getTool(col, row));
+
+//            setActiveButton(toolPicker.getTool(col, row));
+            toolPicker.setActiveButton(col, row);
 
             //just to see on terminal the activeTool
-            System.out.println(MapEditor.getActiveTool());
+            //System.out.println(getActiveTool());
 
         }
 
     }
+
+
+    public Toolable getActiveTool() {
+        return toolPicker.getActiveTool();
+    }
+
 
     public void delete() {
         colorPicker.delete();

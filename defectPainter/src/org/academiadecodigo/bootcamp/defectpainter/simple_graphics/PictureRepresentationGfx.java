@@ -13,7 +13,7 @@ public class PictureRepresentationGfx implements Representable {
 
     public void setPicture(Picture picture) {
         this.picture = picture;
-        picture.draw();
+        //picture.draw();
     }
 
     public Picture getPicture() {

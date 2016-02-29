@@ -20,7 +20,4 @@ public class ToolButton extends Button {
         return toolable;
     }
 
-    public void setActiveTool(/*should receive a Menu/MapEditor*/) {
-        MapEditor.setActiveTool(this.toolable);
-    }
 }

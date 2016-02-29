@@ -35,6 +35,8 @@ public class ToolFactory {
             case CIRCLE_STROKED:
                 toolable = new CircleStroked();
                 break;
+
+
         }
 
         return toolable;

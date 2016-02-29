@@ -87,7 +87,7 @@ public class Controller implements KeyboardHandler, MouseHandler {
         keyboard.addEventListener(keyExit);
 
         KeyboardEvent keyReset = new KeyboardEvent();
-        keyReset.setKey(KeyboardEvent.KEY_R);
+        keyReset.setKey(KeyboardEvent.KEY_N);
         keyReset.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(keyReset);
 

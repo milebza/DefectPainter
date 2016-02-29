@@ -23,7 +23,7 @@ public class MapEditor {
 
     public static final int DEFAULT_GRID_SIZE = 30;
     private static final int TOP_CORRECTION = 23;
-    private static Toolable activeTool = new Brush();
+    //private static Toolable activeTool = new Brush();
     private static ColorCorrelation activeColor = ColorCorrelation.BLACK;
     private RepresentationFactory factory;
     private Grid grid;
@@ -53,6 +53,14 @@ public class MapEditor {
         initCommon();
     }
 
+    public static ColorCorrelation getActiveColor() {
+        return activeColor;
+    }
+
+    public static void setActiveColor(ColorCorrelation activeColor) {
+        MapEditor.activeColor = activeColor;
+    }
+
     private void initCommon() {
         this.cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
@@ -73,26 +81,10 @@ public class MapEditor {
     }
 
 
-    public static void setActiveTool(Toolable tool) {
-        activeTool = tool;
-    }
-
-    public static Toolable getActiveTool() {
-        return activeTool;
-    }
-
-    public static ColorCorrelation getActiveColor() {
-        return activeColor;
-    }
-
-    public static void setActiveColor(ColorCorrelation activeColor) {
-        MapEditor.activeColor = activeColor;
-    }
-
     public void continuousPainting() {
         if (spaceHold) {
-            if (activeTool instanceof OneClickable) {
-                ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+            if (menu.getActiveTool() instanceof OneClickable) {
+                ((OneClickable) menu.getActiveTool()).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
             }
         }
     }
@@ -125,23 +117,14 @@ public class MapEditor {
                     continuousPainting();
                     break;
                 case KeyboardEvent.KEY_L:
-                    try {
-                        this.grid = Streamer.load(factory, "resources/test.txt", grid);
-                        resetSections();
-                    } catch (IOException e) {
-                        e.getMessage();
-                    }
+                    load();
                     break;
                 case KeyboardEvent.KEY_S:
-                    try {
-                        Streamer.save("resources/test.txt", this.grid);
-                    } catch (IOException e) {
-                        e.getMessage();
-                    }
+                    save();
                     break;
                 case KeyboardEvent.KEY_SPACE:
-                    if (activeTool instanceof OneClickable) {
-                        ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                    if (menu.getActiveTool() instanceof OneClickable) {
+                        ((OneClickable) menu.getActiveTool()).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
                     }
                     spaceHold = true;
                     break;
@@ -151,7 +134,7 @@ public class MapEditor {
                 case KeyboardEvent.KEY_X:
                     notOver = false;
                     break;
-                case KeyboardEvent.KEY_R:
+                case KeyboardEvent.KEY_N:
                     grid.reset();
                     break;
             }
@@ -161,6 +144,23 @@ public class MapEditor {
                     spaceHold = false;
                     break;
             }
+        }
+    }
+
+    public void save() {
+        try {
+            Streamer.save("resources/test.txt", this.grid);
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
+
+    public void load() {
+        try {
+            this.grid = Streamer.load(factory, "resources/test.txt", grid);
+            resetSections();
+        } catch (IOException e) {
+            e.getMessage();
         }
     }
 
@@ -201,20 +201,20 @@ public class MapEditor {
 
         switch (event.getEventType()) {
             case MOUSE_CLICKED:
-                if (activeTool instanceof OneClickable) {
-                    ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                if (menu.getActiveTool() instanceof OneClickable) {
+                    ((OneClickable) menu.getActiveTool()).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
                 }
                 break;
             case MOUSE_MOVED:
                 break;
             case MOUSE_PRESSED:
-                if (activeTool instanceof PressReleasable) {
-                    ((PressReleasable) activeTool).onPress(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                if (menu.getActiveTool() instanceof PressReleasable) {
+                    ((PressReleasable) menu.getActiveTool()).onPress(this.grid.getCell(cursor.getCol(), cursor.getRow()));
                 }
                 break;
             case MOUSE_RELEASED:
-                if (activeTool instanceof PressReleasable) {
-                    ((PressReleasable) activeTool).onRelease(this.grid.getCell(cursor.getCol(), cursor.getRow()), this.grid);
+                if (menu.getActiveTool() instanceof PressReleasable) {
+                    ((PressReleasable) menu.getActiveTool()).onRelease(this.grid.getCell(cursor.getCol(), cursor.getRow()), this.grid);
                 }
                 break;
             case MOUSE_ENTERED:
@@ -222,8 +222,8 @@ public class MapEditor {
             case MOUSE_EXITED:
                 break;
             case MOUSE_DRAGGED:
-                if (activeTool instanceof OneClickable) {
-                    ((OneClickable) activeTool).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
+                if (menu.getActiveTool() instanceof OneClickable) {
+                    ((OneClickable) menu.getActiveTool()).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
                 }
                 break;
 

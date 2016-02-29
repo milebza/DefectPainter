@@ -40,6 +40,11 @@ public class Cursor {
         this.row = row;
     }
 
+    public void moveTo(int col, int row) {
+        setCol(col);
+        setRow(row);
+    }
+
     public boolean isOn() {
         return on;
     }

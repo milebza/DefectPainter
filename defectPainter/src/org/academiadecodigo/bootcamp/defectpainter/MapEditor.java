@@ -189,21 +189,26 @@ public class MapEditor {
     }
 
     public void pollMouseEvents() {
+
         MouseEvent event = controller.mousePoll();
 
         if (event == null) {
             return;
         }
 
+        // gets the col and row from the mouse click
         int tempCol = Converter.xToCol((int) (event.getX() - Converter.LEFT_MARGIN));
         int tempRow = Converter.yToRow((int) (event.getY() - TOP_CORRECTION - Converter.TOP_MARGIN));
 
+        // checks if the click is inside the grid
         if (tempCol > grid.getWidth() - 1 || tempRow > grid.getHeight() - 1 ||
                 event.getX() < Converter.LEFT_MARGIN || event.getY() < Converter.TOP_MARGIN + TOP_CORRECTION) {
 
+            // or inside the menu
             if (tempCol > grid.getWidth() && tempCol < menu.getWidth() && tempRow < menu.getHeight() &&
                     event.getY() > Converter.TOP_MARGIN + TOP_CORRECTION) {
 
+                // and if inside menu, asks menu to check what to do
                 this.menu.checkAction(this.grid, tempCol, tempRow);
 
             }
@@ -211,9 +216,9 @@ public class MapEditor {
             return;
         }
 
-        //Move painter (cursor) to mouse position
-        this.cursor.setCol(tempCol);
-        this.cursor.setRow(tempRow);
+        // moves cursor to mouse position
+        this.cursor.moveTo(tempCol, tempRow);
+
 
         switch (event.getEventType()) {
             case MOUSE_CLICKED:
@@ -242,11 +247,7 @@ public class MapEditor {
                     ((OneClickable) menu.getActiveTool()).onClick(this.grid.getCell(cursor.getCol(), cursor.getRow()));
                 }
                 break;
-
         }
-
-
     }
-
 }
 

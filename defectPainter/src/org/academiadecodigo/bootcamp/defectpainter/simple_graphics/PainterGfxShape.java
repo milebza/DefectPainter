@@ -17,17 +17,13 @@ public class PainterGfxShape extends MovableShapeRepresentationGfx {
 
             case ROUND:
                 super.setShape(new Ellipse(Converter.colToX(col) + Converter.LEFT_MARGIN, Converter.rowToY(row) + Converter.TOP_MARGIN,
-                        Converter.COL_WIDTH, Converter.ROW_HEIGHT), ColorCorrelation.WHITE.getState());
+                        Converter.COL_WIDTH, Converter.ROW_HEIGHT), ColorCorrelation.RED.getState());
                 break;
 
             case RECTANGULAR:
                 super.setShape(new Rectangle(Converter.colToX(col) + Converter.LEFT_MARGIN, Converter.rowToY(row) + Converter.TOP_MARGIN,
-                        Converter.COL_WIDTH, Converter.ROW_HEIGHT), ColorCorrelation.WHITE.getState());
+                        Converter.COL_WIDTH, Converter.ROW_HEIGHT), ColorCorrelation.RED.getState());
                 break;
         }
-
-
     }
-
-
 }

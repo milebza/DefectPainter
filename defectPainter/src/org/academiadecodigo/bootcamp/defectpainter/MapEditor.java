@@ -23,7 +23,6 @@ public class MapEditor {
 
     public static final int DEFAULT_GRID_SIZE = 30;
     private static final int TOP_CORRECTION = 23;
-    //private static Toolable activeTool = new Brush();
     private static ColorCorrelation activeColor = ColorCorrelation.BLACK;
     private RepresentationFactory factory;
     private Grid grid;
@@ -32,9 +31,14 @@ public class MapEditor {
     private Menu menu;
     private boolean spaceHold;
 
+    // loop stop condition
     private boolean notOver = true;
 
-
+    /**
+     * Constructor
+     *
+     * @param factory object factory
+     */
     public MapEditor(RepresentationFactory factory) {
         this.factory = factory;
         this.grid = new Grid(factory, DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
@@ -61,19 +65,25 @@ public class MapEditor {
         MapEditor.activeColor = activeColor;
     }
 
+    // Initialize mapEditor components
     private void initCommon() {
         this.cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
         this.menu = new Menu(factory, grid.getWidth() + 1);
     }
 
+    /**
+     * Starts project animation
+     * @throws InterruptedException
+     */
     public void start() throws InterruptedException {
 
         while (notOver) {
 
-            Thread.sleep(1);
+            Thread.sleep(10);
 
             pollKeyboardEvents();
+
             pollMouseEvents();
         }
 
@@ -81,6 +91,7 @@ public class MapEditor {
     }
 
 
+    // checks if the space key is held down to paint or not
     public void continuousPainting() {
         if (spaceHold) {
             if (menu.getActiveTool() instanceof OneClickable) {
@@ -89,7 +100,9 @@ public class MapEditor {
         }
     }
 
-
+    /**
+     * Take keyboardEvents from the LinkedList
+     */
     public void pollKeyboardEvents() {
 
         KeyboardEvent event = controller.getQueueKeyboard().poll();

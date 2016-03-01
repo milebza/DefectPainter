@@ -11,8 +11,7 @@ import org.academiadecodigo.bootcamp.defectpainter.objects.*;
 
 public class Menu {
 
-    private static final int SECTION_MARGIN = 1;
-    //private ToolButton[] toolButtons;
+    private static final int SECTION_MARGIN = 1; // margin between sections in menu
 
     private ColorPicker colorPicker;
     private Cell[] selectedColor;
@@ -89,6 +88,7 @@ public class Menu {
 
     public void delete() {
         colorPicker.delete();
+        toolPicker.delete();
 
         for (int i = 0; i < selectedColor.length; i++) {
             selectedColor[i].delete();

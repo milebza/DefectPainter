@@ -40,8 +40,6 @@ public class Main {
         Rectangle background = new Rectangle(Converter.TOP_MARGIN, Converter.LEFT_MARGIN, Converter.COL_WIDTH * (MapEditor.DEFAULT_GRID_SIZE + 3), Converter.ROW_HEIGHT * MapEditor.DEFAULT_GRID_SIZE);
         background.setColor(new Color(230, 250, 255));
         background.fill();
-
-
         RepresentationFactory factory = new RepresentationGfxFactory();
 
         MapEditor mapEditor = null;

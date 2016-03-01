@@ -3,7 +3,9 @@ package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
+import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Streamer;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -13,13 +15,21 @@ import java.util.NoSuchElementException;
 public class Grid implements Iterable<Cell> {
 
     private Cell[][] cells;
+    private RepresentationFactory factory;
 
     //initialized just to work while set color is not implemented
     private ColorCorrelation colorCorrelation = ColorCorrelation.BLACK;
 
     public Grid(RepresentationFactory factory, int width, int height) {
 
+        this.factory = factory;
+        cellsInit(width, height);
+    }
+
+    private void cellsInit(int width, int height) {
+
         cells = new Cell[height][width];
+
         Shapeable cellRepresentation = null;
 
         for (int col = 0; col < width; col++) {
@@ -28,7 +38,6 @@ public class Grid implements Iterable<Cell> {
                 cells[row][col] = new Cell(col, row, cellRepresentation);
             }
         }
-
     }
 
     public char getState(int col, int row) {
@@ -58,6 +67,60 @@ public class Grid implements Iterable<Cell> {
         return colorCorrelation;
     }
 
+    public char[] convertToCharArray() {
+
+        Iterator<Cell> it = this.iterator();
+
+        int i = 0;
+
+        // initializes a char array with: (w*h)+number of lines -> to count with the '\n' chars in the end of each line
+        char[] chars = new char[(this.getWidth() * this.getHeight()) + this.getHeight()];
+
+        while (it.hasNext()) {
+            Cell actualCell = it.next();
+            chars[i++] = actualCell.getState();
+            if (actualCell.getCol() == this.getWidth() - 1) {
+                chars[i++] = '\n';
+            }
+        }
+
+        return chars;
+    }
+
+    public void convertFromCharArray(char[] chars) {
+
+        // section that determines the file size
+        int rows = 0;
+        int cols = 0;
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == '\n') {
+                rows++;
+            }
+        }
+
+        cols = (chars.length / rows) - 1;
+
+        // if the file size determined previously is not the same as the actual grid size
+        // then deletes all previous existing cells and creates a new Cell[][]
+        if (rows != this.getHeight() || cols != this.getWidth()) {
+
+            this.delete();
+            this.cellsInit(cols, rows);
+        }
+
+        // iterates through the Cell[][] and sets it state
+        Iterator<Cell> it = this.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            // skip '\n' chars
+            if (chars[i] == '\n') {
+                i++;
+                continue;
+            }
+            it.next().setState(chars[i++]);
+        }
+    }
 
 
     public void reset() {

@@ -51,12 +51,6 @@ public class MapEditor {
         initCommon();
     }
 
-    public MapEditor(RepresentationFactory factory, String file) throws IOException {
-        this.factory = factory;
-        this.grid = Streamer.load(factory, file, grid);
-        initCommon();
-    }
-
     public static ColorCorrelation getActiveColor() {
         return activeColor;
     }
@@ -165,7 +159,7 @@ public class MapEditor {
      */
     public void save() {
         try {
-            Streamer.save("saved_files/test.txt", this.grid);
+            Streamer.save(this.grid.convertToCharArray(), "saved_files/test.txt");
         } catch (IOException e) {
             e.getMessage();
         }
@@ -173,7 +167,7 @@ public class MapEditor {
 
     public void load() {
         try {
-            this.grid = Streamer.load(factory, "saved_files/test.txt", grid);
+            this.grid.convertFromCharArray(Streamer.load("saved_files/test.txt"));
             resetSections();
         } catch (IOException e) {
             e.getMessage();

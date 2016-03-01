@@ -5,22 +5,16 @@ import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ToolButton;
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolFactory;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolType;
-import org.academiadecodigo.bootcamp.defectpainter.objects.CellType;
-import org.academiadecodigo.bootcamp.defectpainter.objects.Representable;
-import org.academiadecodigo.bootcamp.defectpainter.objects.RepresentationFactory;
-import org.academiadecodigo.bootcamp.defectpainter.objects.Shapeable;
+import org.academiadecodigo.bootcamp.defectpainter.objects.*;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
  */
 public class ColorPicker {
+
     private static final int DEFAULT_COLORS_PER_LINE = 2;
     private int colOffset;
     private ColorButton[][] colorButtons;
-
-    /*public Cell[][] getColorPalette() {
-        return colorButtons;
-    }*/
 
     public ColorPicker(RepresentationFactory factory, int colOffset) {
         this.colOffset = colOffset;

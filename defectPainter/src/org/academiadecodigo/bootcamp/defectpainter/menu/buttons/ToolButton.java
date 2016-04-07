@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu.buttons;
 
-import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.Toolable;
 
 /**
@@ -12,8 +11,6 @@ public class ToolButton extends Button {
 
     public ToolButton(Toolable toolable) {
         this.toolable = toolable;
-        //super.setRepresentNormal();
-        //super.setRepresentSelected();
     }
 
     public Toolable getToolable() {

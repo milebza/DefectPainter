@@ -19,13 +19,21 @@ public class Converter {
         return row * ROW_HEIGHT;
     }
 
+    /**
+     * Converts the position in the y axis to a column number
+     * @param x position in the y axis
+     * @return the number of the column associated with that param
+     */
     public static int xToCol(int x) {
-        //System.out.println("X " + (x / COL_WIDTH));
         return x / COL_WIDTH;
     }
 
+    /**
+     * Converts the position in the y axis to a row number
+     * @param y position in the y axis
+     * @return the number of the row associated with that param
+     */
     public static int yToRow(int y) {
-        //System.out.println("Y " + (y / ROW_HEIGHT));
         return y / ROW_HEIGHT;
     }
 

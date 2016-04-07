@@ -40,6 +40,11 @@ public class Cursor {
         this.row = row;
     }
 
+    /**
+     * Moves the cursor to a given cell
+     * @param col column to move to
+     * @param row row to move to
+     */
     public void moveTo(int col, int row) {
         setCol(col);
         setRow(row);

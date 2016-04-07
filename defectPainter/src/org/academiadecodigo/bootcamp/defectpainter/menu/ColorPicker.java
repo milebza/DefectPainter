@@ -1,10 +1,7 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu;
 
 import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ColorButton;
-import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ToolButton;
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
-import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolFactory;
-import org.academiadecodigo.bootcamp.defectpainter.menu.tools.ToolType;
 import org.academiadecodigo.bootcamp.defectpainter.objects.*;
 
 /**
@@ -19,11 +16,6 @@ public class ColorPicker {
     public ColorPicker(RepresentationFactory factory, int colOffset) {
         this.colOffset = colOffset;
         init(factory, DEFAULT_COLORS_PER_LINE);
-    }
-
-    public ColorPicker(RepresentationFactory factory, int colOffset, int numberOfColorsPerLine) {
-        this.colOffset = colOffset;
-        init(factory, numberOfColorsPerLine);
     }
 
     private void init(RepresentationFactory factory, int numberOfColorsPerLine) {
@@ -45,11 +37,8 @@ public class ColorPicker {
                 colorButtons[i][j] = new ColorButton(ColorCorrelation.values()[colorIndex], representation);
 
                 colorIndex++;
-
             }
-
         }
-
     }
 
     public void delete() {
@@ -58,7 +47,6 @@ public class ColorPicker {
             for (int j = 0; j < colorButtons[i].length; j++) {
                 colorButtons[i][j].delete();
             }
-
         }
     }
 

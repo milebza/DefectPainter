@@ -43,8 +43,8 @@ public class Controller implements KeyboardHandler, MouseHandler {
         mouse.addEventListener(MouseEventType.MOUSE_RELEASED);
     }
 
+    // Setup of the shortcut keys
     public void configKeys() {
-
 
         KeyboardEvent keyUp = new KeyboardEvent();
         keyUp.setKey(KeyboardEvent.KEY_UP);
@@ -118,8 +118,7 @@ public class Controller implements KeyboardHandler, MouseHandler {
     }
 
     @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-    }
+    public void mouseMoved(MouseEvent mouseEvent) {}
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
@@ -132,14 +131,10 @@ public class Controller implements KeyboardHandler, MouseHandler {
     }
 
     @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-
-    }
+    public void mouseEntered(MouseEvent mouseEvent) {}
 
     @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-
-    }
+    public void mouseExited(MouseEvent mouseEvent) {}
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {

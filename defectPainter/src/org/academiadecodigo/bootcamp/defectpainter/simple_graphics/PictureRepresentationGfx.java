@@ -13,11 +13,6 @@ public class PictureRepresentationGfx implements Representable {
 
     public void setPicture(Picture picture) {
         this.picture = picture;
-        //picture.draw();
-    }
-
-    public Picture getPicture() {
-        return picture;
     }
 
     @Override
@@ -33,7 +28,6 @@ public class PictureRepresentationGfx implements Representable {
     @Override
     public void draw() {
         picture.draw();
-
     }
 
     @Override

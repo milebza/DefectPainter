@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp.defectpainter.menu;
 
-import org.academiadecodigo.bootcamp.defectpainter.menu.buttons.ToolButton;
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.menu.tools.Toolable;
 import org.academiadecodigo.bootcamp.defectpainter.objects.*;
@@ -47,10 +46,7 @@ public class Menu {
             selectedColor[i] = new Cell(colOffset + i, colorPicker.getHeight() + SECTION_MARGIN, cellRepresentation);
             selectedColor[i].setState(ColorCorrelation.BLACK.getState());
         }
-
-
     }
-
 
     public void checkAction(Grid grid, int col, int row) {
 
@@ -68,23 +64,13 @@ public class Menu {
             }
 
         } else if (col < toolPicker.getWidth() && row < toolPicker.getHeight()) {
-
-
-//            setActiveButton(toolPicker.getTool(col, row));
             toolPicker.setActiveButton(col, row);
-
-            //just to see on terminal the activeTool
-            //System.out.println(getActiveTool());
-
         }
-
     }
-
 
     public Toolable getActiveTool() {
         return toolPicker.getActiveTool();
     }
-
 
     public void delete() {
         colorPicker.delete();

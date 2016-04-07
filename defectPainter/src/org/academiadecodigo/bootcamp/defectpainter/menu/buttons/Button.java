@@ -9,7 +9,6 @@ public abstract class Button {
 
     private Representable representNormal;
     private Representable representSelected;
-    private boolean selected;
 
     public Representable getRepresentNormal() {
         return representNormal;
@@ -27,11 +26,4 @@ public abstract class Button {
         this.representSelected = representSelected;
     }
 
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
 }

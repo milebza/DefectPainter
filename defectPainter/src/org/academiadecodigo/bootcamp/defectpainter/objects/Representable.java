@@ -14,5 +14,4 @@ public interface Representable {
 
     void delete();
 
-
 }

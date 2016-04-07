@@ -39,10 +39,6 @@ public class Cell {
         this.row = row;
     }
 
-    public Representable getRepresentation() {
-        return representation;
-    }
-
     public char getState() {
         return state;
     }

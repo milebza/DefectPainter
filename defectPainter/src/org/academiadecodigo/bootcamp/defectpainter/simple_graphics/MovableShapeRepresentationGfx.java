@@ -8,7 +8,6 @@ import org.academiadecodigo.bootcamp.defectpainter.objects.Movable;
  */
 public class MovableShapeRepresentationGfx extends ShapeRepresentationGfx implements Movable {
 
-
     @Override
     public void move(int incrementCol, int incrementRow) {
         if (super.getShape() instanceof org.academiadecodigo.simplegraphics.graphics.Movable) {

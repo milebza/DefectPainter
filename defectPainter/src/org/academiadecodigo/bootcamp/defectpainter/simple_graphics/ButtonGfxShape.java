@@ -25,10 +25,6 @@ public class ButtonGfxShape extends ShapeRepresentationGfx {
                 super.setShape(new Rectangle(Converter.colToX(col) + Converter.LEFT_MARGIN, Converter.rowToY(row) + Converter.TOP_MARGIN,
                         Converter.COL_WIDTH, Converter.ROW_HEIGHT), ColorCorrelation.WHITE.getState());
                 break;
-
-
-
         }
     }
-
 }

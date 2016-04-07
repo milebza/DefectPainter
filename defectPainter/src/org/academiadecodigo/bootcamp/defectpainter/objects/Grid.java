@@ -3,9 +3,7 @@ package org.academiadecodigo.bootcamp.defectpainter.objects;
 
 import org.academiadecodigo.bootcamp.defectpainter.menu.colors.ColorCorrelation;
 import org.academiadecodigo.bootcamp.defectpainter.MapEditor;
-import org.academiadecodigo.bootcamp.defectpainter.utility_classes.Streamer;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -46,27 +44,21 @@ public class Grid implements Iterable<Cell> {
 
     public void setState(int col, int row, char paint) {
         cells[row][col].setState(paint);
-
     }
 
     public Cell getCell(int col, int row) {
         return cells[row][col];
     }
 
-    //TODO: implementar isto consoante a cor seleccionada pelo rato no menu
     public void setColorCorrelation(ColorCorrelation colorCorrelation) {
         this.colorCorrelation = colorCorrelation;
-        //TODO: (Filipe) prefiro que a cor activa esteja como static no MapEditor e assim as Tools acedem facilmente.
-        //por agora faz o set no MapEditor aqui. Mas devia a ser feito directamente do MenuPanel.checkAction.
-        //O MenuPanel tem que receber grids pq? podia só setar as variaveis static to MapEditor. (activeColor, activeTool, etc)
-
         MapEditor.setActiveColor(colorCorrelation);
     }
 
-    public ColorCorrelation getColorCorrelation() {
-        return colorCorrelation;
-    }
-
+    /**
+     * Converts the grid into a char array
+     * @return a char array accordingly to the color that was in each cell
+     */
     public char[] convertToCharArray() {
 
         Iterator<Cell> it = this.iterator();
@@ -87,6 +79,10 @@ public class Grid implements Iterable<Cell> {
         return chars;
     }
 
+    /**
+     * Converts to a Grid from a char array
+     * @param chars the array which makes the correlation from the chars to the colors
+     */
     public void convertFromCharArray(char[] chars) {
 
         // section that determines the file size

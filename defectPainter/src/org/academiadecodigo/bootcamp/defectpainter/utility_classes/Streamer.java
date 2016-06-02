@@ -9,18 +9,24 @@ import java.io.*;
 public class Streamer {
 
     /**
-     * Saves in a txt file
+     * Saves in a txt path
      *
      * @param chars chars array that we want to save
-     * @param file  file name of where to save
+     * @param path  path name of where to save
      * @throws IOException if buffered writer throws an exception while closing
      */
-    public static void save(char[] chars, String file) throws IOException {
+    public static void save(char[] chars, String path, String fileName) throws IOException {
 
         BufferedWriter bWriter = null;
 
+        File dir = new File(path);
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+
+
         try {
-            bWriter = new BufferedWriter(new FileWriter(file));
+            bWriter = new BufferedWriter(new FileWriter(path+fileName));
             bWriter.write(chars);
         } catch (IOException e) {
             e.getMessage();

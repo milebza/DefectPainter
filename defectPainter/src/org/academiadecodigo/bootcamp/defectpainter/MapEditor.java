@@ -15,6 +15,7 @@ import org.academiadecodigo.bootcamp.defectpainter.mouse.*;
 
 
 import java.io.*;
+import java.net.URISyntaxException;
 
 /**
  * Created by milena, filipe, joana, ita on 24/02/16.
@@ -33,6 +34,10 @@ public class MapEditor {
 
     // loop stop condition
     private boolean notOver = true;
+
+
+    private String path;
+    private String fileName;
 
     /**
      * Constructor
@@ -64,6 +69,15 @@ public class MapEditor {
         this.cursor = new Cursor(factory, grid.getWidth(), grid.getHeight());
         this.controller = new Controller();
         this.menu = new Menu(factory, grid.getWidth() + 1);
+
+        try {
+            this.path = MapEditor.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        path = path.substring(0, path.lastIndexOf("/"));
+        fileName = "/myVerySpecialDrawing.txt";
     }
 
     /**
@@ -155,19 +169,30 @@ public class MapEditor {
     }
 
     /**
-     * Save current grid in test.txt file
+     * Saves the current grid in a file:
+     *
+     * If running on a jar -> @fileName on the same directory as the jar file
+     * If running on the IDE -> defectPainter/out/production/defectPainter/myVerySpecialDrawing.txt file
      */
     public void save() {
+
         try {
-            Streamer.save(this.grid.convertToCharArray(), "saved_files/test.txt");
+            //Streamer.save(this.grid.convertToCharArray(), "resources/saved_files/therealone.txt");
+            Streamer.save(this.grid.convertToCharArray(), path, fileName);
         } catch (IOException e) {
             e.getMessage();
         }
     }
 
+    /**
+     * Loads file from where it was saved.
+     * @see MapEditor save()
+     */
     public void load() {
+
         try {
-            this.grid.convertFromCharArray(Streamer.load("saved_files/test.txt"));
+            //this.grid.convertFromCharArray(Streamer.load("resources/saved_files/test.txt"));
+            this.grid.convertFromCharArray(Streamer.load(path+fileName));
             resetSections();
         } catch (IOException e) {
             e.getMessage();
